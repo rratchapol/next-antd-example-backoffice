@@ -44,7 +44,7 @@ const data: DataType[] = [
   },
 ];
 
-export default function DataTable() {
+export default function DataTables() {
   const [searchText, setSearchText] = useState("");
 
   const columns: ColumnsType<DataType> = [

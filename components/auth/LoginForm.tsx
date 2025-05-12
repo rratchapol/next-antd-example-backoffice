@@ -1,47 +1,36 @@
 "use client";
 
-import { useState } from "react";
-import { Form, Input, Button, Checkbox, message } from "antd";
+import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useRouter } from "next/navigation";
+import { useForm } from "antd/es/form/Form";
 
-export default function LoginForm() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
+type LoginFormProps = {
+  onLogin: (values: { username: string; password: string }) => void;
+};
 
-  const onFinish = async (values: any) => {
-    try {
-      setLoading(true);
-      // TODO: เพิ่มการเรียก API authentication ที่นี่
-      console.log("Login values:", values);
-      
-      // Mock successful login
-      setTimeout(() => {
-        message.success("เข้าสู่ระบบสำเร็จ");
-        router.push("/users");
-        setLoading(false);
-      }, 1000);
-    } catch (error) {
-      message.error("เข้าสู่ระบบไม่สำเร็จ");
-      setLoading(false);
-    }
+export default function LoginForm({ onLogin }: LoginFormProps) {
+  const [form] = useForm();
+
+  const handleFinish = (values: any) => {
+    onLogin(values); // ส่งข้อมูลไปให้ page
   };
 
   return (
     <Form
+      form={form}
       name="login"
       initialValues={{ remember: true }}
-      onFinish={onFinish}
       layout="vertical"
       className="mt-8"
+      onFinish={handleFinish}
     >
       <Form.Item
         name="username"
         rules={[{ required: true, message: "กรุณากรอกชื่อผู้ใช้" }]}
       >
-        <Input 
-          prefix={<UserOutlined className="site-form-item-icon" />} 
-          placeholder="ชื่อผู้ใช้" 
+        <Input
+          prefix={<UserOutlined />}
+          placeholder="ชื่อผู้ใช้"
           size="large"
         />
       </Form.Item>
@@ -51,7 +40,7 @@ export default function LoginForm() {
         rules={[{ required: true, message: "กรุณากรอกรหัสผ่าน" }]}
       >
         <Input.Password
-          prefix={<LockOutlined className="site-form-item-icon" />}
+          prefix={<LockOutlined />}
           placeholder="รหัสผ่าน"
           size="large"
         />
@@ -67,10 +56,9 @@ export default function LoginForm() {
       </Form.Item>
 
       <Form.Item>
-        <Button 
-          type="primary" 
-          htmlType="submit" 
-          loading={loading}
+        <Button
+          type="primary"
+          htmlType="submit"
           className="w-full bg-blue-600"
           size="large"
         >

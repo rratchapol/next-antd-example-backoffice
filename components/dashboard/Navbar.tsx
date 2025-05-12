@@ -23,6 +23,10 @@ export default function Navbar() {
   const menuItems = [
     { key: "/dashboard", label: "Dashboard" },
     { key: "/users", label: "ผู้ใช้งาน" },
+    { key: "/restaurant", label: "ร้านค้า" },
+    { key: "/community", label: "ชุมชน" },
+    { key: "/brands", label: "แบรนด์" },
+    { key: "/networks", label: "เครือข่าย" },
     { key: "/orders", label: "รายการคำสั่ง" },
   ];
 
@@ -34,7 +38,7 @@ export default function Navbar() {
           <span className="text-xl font-bold">Admin</span>
 
           {mounted && (
-            <nav className="hidden md:flex gap-8">
+            <nav className="hidden lg:flex gap-10">
               {menuItems.map((item) => (
                 <Link
                   key={item.key}
