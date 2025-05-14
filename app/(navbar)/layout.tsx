@@ -29,7 +29,7 @@ export default function NavbarLayout({
 
     try {
       const decoded = jwtDecode<JwtPayload>(token);
-      if (decoded.exp * 1000 < Date.now()) {
+      if (decoded.exp * 10000 < Date.now()) {
         localStorage.removeItem('token');
         router.replace('/login');
       } else {
@@ -45,8 +45,10 @@ export default function NavbarLayout({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <main className="p-4 md:p-8">{children}</main>
+      <Navbar >
+        <main className="p-4 md:p-8">{children}</main>
+      </Navbar >
+      {/* <main className="p-4 md:p-8">{children}</main> */}
     </div>
   );
 }
