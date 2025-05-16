@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode';
 import Navbar from '@/components/dashboard/Navbar';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { message } from 'antd';
 
 type JwtPayload = {
   exp: number;
@@ -16,39 +18,29 @@ export default function NavbarLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
-  const [authorized, setAuthorized] = useState(false);
+  const {user, isAuthenticated} = useAuth();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  if(user){
+    console.log("ดู ข้อมูลผู้ใช้", user);
 
-    if (!token) {
-      router.replace('/login');
-      return;
-    }
-
-    try {
-      const decoded = jwtDecode<JwtPayload>(token);
-      if (decoded.exp * 10000 < Date.now()) {
-        localStorage.removeItem('token');
-        router.replace('/login');
-      } else {
-        setAuthorized(true);
-      }
-    } catch (err) {
-      localStorage.removeItem('token');
-      router.replace('/login');
-    }
-  }, []);
-
-  if (!authorized) return null; 
+  }
+  if (!isAuthenticated) {
+    message.error("กรุณาเข้าสู่ระบบ");
+    console.log("ออกจากระบบ");
+    window.location.href = "/login"; // Redirect to login page
+    return null; // Prevent rendering the component
+  }
 
   return (
+    // <AuthProvider>
     <div className="min-h-screen bg-gray-50">
       <Navbar >
         <main className="p-4 md:p-8">{children}</main>
       </Navbar >
-      {/* <main className="p-4 md:p-8">{children}</main> */}
     </div>
+    // </AuthProvider>
   );
 }
+
+
+

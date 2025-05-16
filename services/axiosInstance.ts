@@ -5,7 +5,10 @@ import environment from "@/environment/environment";
 
 const axiosInstance = axios.create({
   baseURL: environment.BaseUrl,
-  withCredentials: true,
+  // withCredentials: true,
+    headers: {
+    'Content-Type': 'application/json', // เพิ่มตรงนี้
+  },
 });
 
 // Request Interceptor
@@ -26,7 +29,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
-      window.location.href = '/login'; 
+      // window.location.href = '/login'; 
     }
     return Promise.reject(error);
   }

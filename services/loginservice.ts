@@ -28,7 +28,7 @@ export default async function loginService({
 // services/loginService.ts
 import axios from './axiosInstance';
 
-export const login = async (email: string, password: string) => {
+export const loginservice = async (email: string, password: string) => {
   const response = await axios.post('/login', { email, password });
   return response.data;
 };

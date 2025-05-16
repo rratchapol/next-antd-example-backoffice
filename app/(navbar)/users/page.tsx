@@ -1,10 +1,12 @@
-
+"use client";
 
 import UserTable  from "@/components/tables/UserTable";
+import { useAuth } from "@/contexts/AuthContext";
 import { message } from "antd";
 
-export default function UserPage() {
 
+
+export default function UserPage() {
 
   return (
     <div>
