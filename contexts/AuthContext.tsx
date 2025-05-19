@@ -61,6 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("token", res.token);
         // setToken(res.token);
         message.success("เข้าสู่ระบบสำเร็จ");
+        checkAuth();
         router.push("/users");
       } else {
         message.error(res.message || "เข้าสู่ระบบล้มเหลว");
