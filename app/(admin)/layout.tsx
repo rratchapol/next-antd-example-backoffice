@@ -8,10 +8,7 @@ import Navbar from '@/components/dashboard/Navbar';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { message } from 'antd';
 
-type JwtPayload = {
-  exp: number;
-  [key: string]: any;
-};
+
 
 export default function NavbarLayout({
   children,
@@ -34,7 +31,7 @@ export default function NavbarLayout({
   return (
     // <AuthProvider>
     <div className="min-h-screen bg-gray-50">
-      <Navbar >
+      <Navbar user={user ? { name: (user as any).customer.name } : undefined}>
         <main className="p-4 md:p-8">{children}</main>
       </Navbar >
     </div>

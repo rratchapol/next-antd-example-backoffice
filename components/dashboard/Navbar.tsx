@@ -1,6 +1,5 @@
-// components/SidebarLayout.tsx
 import React, { ReactNode } from 'react';
-import { Layout, Menu } from 'antd';
+import { Avatar, Dropdown, Layout, Menu, MenuProps } from 'antd';
 import {
   HomeOutlined,
   UserOutlined,
@@ -14,22 +13,61 @@ import {
   ShopOutlined,
 } from '@ant-design/icons';
 import Link from 'next/link';
+import { useAuth } from '@/contexts/AuthContext';
 
 const { Sider, Header, Content } = Layout;
 
 interface Props {
   children: ReactNode;
+    user?: {
+    name?: string;
+  };
 }
 
-const Navbar: React.FC<Props> = ({ children }) => {
+const Navbar: React.FC<Props> = ({ children,user }) => {
+
+  const menuItems: MenuProps['items']  = [
+    {
+      key: 'profile',
+      label: 'รายละเอียดผู้ใช้',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'logout',
+      danger: true,
+      icon: <LogoutOutlined />,
+      label: 'ล็อคเอ้าท์',
+    },
+];
+
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    console.log("ดู ข้อมูลผู้ใช้ccc",user),
+    <Layout>
+      {/* Navbar Header */}
+    <Header style={{ background: '#1BC367', padding: '0 24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Dropdown menu={{ items: menuItems }} placement="bottomRight" trigger={['click']}>
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <Avatar
+              src={"/assets/pic_icon.png" }
+              icon={<UserOutlined />}
+              style={{ backgroundColor: '#fff' }}
+            />
+            {/* <span className="text-white font-semibold px-2">{user?.name || 'User'}</span> */}
+            <span className="text-white font-semibold px-2">{'User'}</span>
+
+          </div>
+        </Dropdown>
+    </Header>
+
+    <Layout style={{ minHeight: '100vh' }} >
       {/* Sidebar */}
-      <Sider collapsible style={{ backgroundColor: '' }}>
-        <div style={{ height: 32, margin: 16, color: 'white', textAlign: 'center' }}>
+      <Sider collapsible style={{ backgroundColor: 'white' }} theme="light">
+        {/* <div style={{ height: 32, margin: 16, color: '#000', textAlign: 'center' }}>
           SOS Admin
-        </div>
-        <Menu  theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        </div> */}
+        <Menu  theme="light" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<DashboardOutlined />}>
             <Link href="/">Dashboard</Link>
           </Menu.Item>
@@ -56,10 +94,6 @@ const Navbar: React.FC<Props> = ({ children }) => {
 
       {/* Main Content Layout */}
       <Layout>
-        {/* Navbar Header */}
-        <Header style={{ background: '#001529', padding: '0 24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-          <LogoutOutlined style={{ fontSize: '18px', cursor: 'pointer', color: 'white' }} title="ออกจากระบบ" />
-        </Header>
 
         {/* Main Page Content */}
         <Content style={{ margin: '16px' }}>
@@ -67,7 +101,10 @@ const Navbar: React.FC<Props> = ({ children }) => {
         </Content>
       </Layout>
     </Layout>
+    </Layout>
   );
 };
 
 export default Navbar;
+
+

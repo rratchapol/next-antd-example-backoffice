@@ -4,8 +4,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/services/axiosInstance";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
-import loginservice from "@/services/loginservice";
+// import loginservice from "@/services/loginservice";
 import { message } from "antd";
+import { loginservice } from "@/services/loginservice";
 interface User {
   admin_id: string;
   role: string;
@@ -57,7 +58,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (values: { username: string; password: string }) => {
     try {
       const res = await loginservice(values);
-      if (res.success && res.token) {
+      if (res.token) {
+        console.log("Login successful:", res);
         localStorage.setItem("token", res.token);
         // setToken(res.token);
         message.success("เข้าสู่ระบบสำเร็จ");

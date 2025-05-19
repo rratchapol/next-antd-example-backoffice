@@ -1,7 +1,15 @@
+// UserForm.tsx
 "use client";
 
-import { Form, Input, Button, Row, Col } from "antd";
+import { Form, Input, Button, Row, Col, Divider, Select, DatePicker, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
+import { EnvironmentOutlined } from "@ant-design/icons";
+import VolunteerForm from "./user/VolunteerForm";
+import UsersForm from "./user/๊UserForm";
+import RestaurantForm from "./user/RestaurantForm";
+import VillageForm from "./user/VillageForm";
+
+const { Title } = Typography;
 
 type UserFormProps = {
   onSubmit: (values: any) => void;
@@ -20,93 +28,27 @@ export default function UserForm({ onSubmit, onCancel }: UserFormProps) {
       form={form}
       layout="vertical"
       onFinish={handleFinish}
-      className="max-w-2xl mx-auto mt-8 bg-white p-6 rounded shadow"
+      className="w-full mt-2 bg-white p-4 "
     >
-      <Row gutter={16}>
-        <Col span={12}>
-          <Form.Item
-            label="ชื่อ"
-            name="firstName"
-            rules={[{ required: true, message: "กรุณากรอกชื่อ" }]}
-          >
-            <Input placeholder="ชื่อ" />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            label="นามสกุล"
-            name="lastName"
-            rules={[{ required: true, message: "กรุณากรอกนามสกุล" }]}
-          >
-            <Input placeholder="นามสกุล" />
-          </Form.Item>
-        </Col>
-      </Row>
+       {/* ฟอร์มข้อมูลผู้ใช้ */}
+      <UsersForm />
 
-      <Form.Item
-        label="เบอร์โทร"
-        name="phone"
-        rules={[{ required: true, message: "กรุณากรอกเบอร์โทร" }]}
-      >
-        <Input placeholder="เบอร์โทร" />
-      </Form.Item>
+      {/* ฟอร์มข้อมูลอาสา */}
+      <VolunteerForm />
 
-      <Form.Item
-        label="ที่อยู่"
-        name="address"
-        rules={[{ required: true, message: "กรุณากรอกที่อยู่" }]}
-      >
-        <Input.TextArea rows={2} placeholder="ที่อยู่" />
-      </Form.Item>
+      {/* ฟอร์มข้อมูลร้านค้า */}
+      <RestaurantForm />
 
-      <Row gutter={16}>
-        <Col span={12}>
-          <Form.Item
-            label="จังหวัด"
-            name="province"
-            rules={[{ required: true, message: "กรุณากรอกจังหวัด" }]}
-          >
-            <Input placeholder="จังหวัด" />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            label="เขต/อำเภอ"
-            name="district"
-            rules={[{ required: true, message: "กรุณากรอกเขต/อำเภอ" }]}
-          >
-            <Input placeholder="เขต/อำเภอ" />
-          </Form.Item>
-        </Col>
-      </Row>
+      {/* ฟอร์มข้อมูลหมู่บ้าน */}
+      <VillageForm />
 
-      <Row gutter={16}>
-        <Col span={12}>
-          <Form.Item
-            label="ละติจูด (Latitude)"
-            name="latitude"
-            rules={[{ required: true, message: "กรุณากรอกละติจูด" }]}
-          >
-            <Input placeholder="ละติจูด" />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            label="ลองจิจูด (Longitude)"
-            name="longitude"
-            rules={[{ required: true, message: "กรุณากรอกลองจิจูด" }]}
-          >
-            <Input placeholder="ลองจิจูด" />
-          </Form.Item>
-        </Col>
-      </Row>
-
-      <Form.Item className="text-right">
-        <Button onClick={onCancel} className="mr-2">
-          ยกเลิก
+      <div className="pt-10"></div>
+      <Form.Item className="text-right pt-4">
+        <Button onClick={onCancel} className="mr-2 ">
+          กลับไป
         </Button>
-        <Button type="primary" htmlType="submit">
-          ตกลง
+        <Button type="primary" htmlType="submit" className="!bg-green-500 !border-none">
+          บันทึก
         </Button>
       </Form.Item>
     </Form>

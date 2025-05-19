@@ -1,10 +1,11 @@
 "use client";
 
-import login from "@/services/loginservice";
+// import login from "@/services/loginservice";
 import { useRouter } from "next/navigation";
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import RegisterPage from "@/components/auth/RegisterForm";
+import { loginservice } from "@/services/loginservice";
 
 export default function LoginPage() {
   const [isClient, setIsClient] = useState(false);
@@ -16,7 +17,7 @@ export default function LoginPage() {
   }, []);
 
   const handleLogin = async (values: { username: string; password: string }) => {
-    const res = await login(values);
+    const res = await loginservice(values);
 
     if (res.success && res.token) {
       localStorage.setItem("token", res.token); // เก็บ JWT ไว้

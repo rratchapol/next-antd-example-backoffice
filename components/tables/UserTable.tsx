@@ -7,20 +7,18 @@ import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant
 
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
-import  {getUser}  from "@/services/userservices";
+import { getUsers, User } from "@/services/userservice";
 
 
-interface UserType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
+
+
+interface Props {
+  users: User[];
 }
 
 const UserTable = () => {
   const [searchText, setSearchText] = useState("");
-  const [data, setData] = useState<UserType[]>([]);
+  const [data, setData] = useState<User[]>([]);
 
   const router = useRouter();
 
@@ -30,49 +28,67 @@ const UserTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const users = await getUser();
+      const users = await getUsers();
       setData(users);
     }
     fetchData();
   }, []);
 
-  const columns: ColumnsType<UserType> = [
+    const columns: ColumnsType<User> = [
+    {
+      title: "ลำดับ",
+      // dataIndex: "index",
+      key: "index",
+      render: (_text, _record, index) => index + 1,
+    },
     {
       title: "ชื่อ",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "อายุ",
-      dataIndex: "age",
-      key: "age",
+      title: "ตำแหน่ง",
+      dataIndex: "role",
+      key: "role",
     },
     {
-      title: "ที่อยู่",
-      dataIndex: "address",
-      key: "address",
+      title: "เขต",
+      dataIndex: "area",
+      key: "area",
     },
     {
-      title: "สิทธิ์ผู้ใช้",
-      key: "tags",
-      dataIndex: "tags",
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag === "admin" ? "volcano" : tag === "manager" ? "geekblue" : "green";
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
+      title: "จังหวัด",
+      dataIndex: "province",
+      key: "province",
+    },
+    {
+      title: "จัดการ",
+      dataIndex: "actions",
+      key: "",
+      render: (_text, record) => (
+        <Space>
+          <Button
+            icon={<EditOutlined />}
+            size="small"
+            onClick={() => router.push(`/users/form/${record.id}`)}
+          />
+          <Button
+            icon={<DeleteOutlined />}
+            size="small"
+            danger
+            onClick={() => {
+              // Add your delete logic here
+              // Example: handleDelete(record.id)
+            }}
+          />
+        </Space>
       ),
     },
   ];
 
+
 return (
-  <div className="bg-white p-6 rounded-lg shadow-sm">
+  <div className="">
     {/* ส่วนค้นหาและปุ่ม เพิ่มข้อมูลใหม่ */}
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
       <Input
