@@ -21,12 +21,12 @@ export default function NavbarLayout({
     console.log("ดู ข้อมูลผู้ใช้", user);
 
   }
-  if (!isAuthenticated) {
-    message.error("กรุณาเข้าสู่ระบบ");
-    console.log("ออกจากระบบ");
-    window.location.href = "/login"; // Redirect to login page
-    return null; // Prevent rendering the component
-  }
+  // if (!isAuthenticated) {
+  //   message.error("กรุณาเข้าสู่ระบบ");
+  //   console.log("ออกจากระบบ");
+  //   window.location.href = "/login";
+  //   return null; 
+  // }
 
   return (
     // <AuthProvider>

@@ -57,17 +57,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (values: { username: string; password: string }) => {
     try {
-      const res = await loginservice(values);
-      if (res.token) {
-        console.log("Login successful:", res);
-        localStorage.setItem("token", res.token);
-        // setToken(res.token);
-        message.success("เข้าสู่ระบบสำเร็จ");
-        checkAuth();
-        router.push("/users");
-      } else {
-        message.error(res.message || "เข้าสู่ระบบล้มเหลว");
-      }
+       router.push("/users");
+      // const res = await loginservice(values);
+      // if (res.token) {
+      //   localStorage.setItem("token", res.token);
+      //   checkAuth();
+      //   router.push("/users");
+      // } else {
+      //   message.error(res.message || "เข้าสู่ระบบล้มเหลว");  
+      // }
     } catch (error) {
       message.error("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
       console.error("Login error:", error);

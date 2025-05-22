@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
   baseURL: environment.BaseUrl,
   // withCredentials: true,
     headers: {
-    'Content-Type': 'application/json', // เพิ่มตรงนี้
+    'Content-Type': 'application/json', 
   },
 });
 

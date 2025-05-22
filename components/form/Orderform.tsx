@@ -1,34 +1,27 @@
-'use client';
+// UserForm.tsx
+"use client";
 
-import React from 'react';
-import { Form, Input, Checkbox, Button, message } from 'antd';
+import { Form, Input, Button, Row, Col, Divider, Select, DatePicker, Typography } from "antd";
+import { useForm } from "antd/es/form/Form";
+import { EnvironmentOutlined } from "@ant-design/icons";
+import VolunteerForm from "./user/VolunteerForm";
+import UsersForm from "./user/๊UserForm";
+import RestaurantForm from "./user/RestaurantForm";
+import VillageForm from "./user/VillageForm";
 
-export default function RegisterPage() {
-  const [form] = Form.useForm();
+const { Title } = Typography;
 
-  const handleFinish = async (values: any) => {
-    if (!values.agree) {
-      message.error("กรุณายอมรับเงื่อนไขการใช้งานก่อน");
-      return;
-    }
+type UserFormProps = {
+  onSubmit: (values: any) => void;
+  onCancel?: () => void;
+  userId?: string;
+};
 
-    try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
+export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps) {
+  const [form] = useForm();
 
-      if (res.ok) {
-        message.success('สมัครสมาชิกสำเร็จ!');
-        form.resetFields();
-      } else {
-        message.error('ไม่สามารถสมัครสมาชิกได้');
-      }
-    } catch (err) {
-      console.error(err);
-      message.error('เกิดข้อผิดพลาด');
-    }
+  const handleFinish = (values: any) => {
+    onSubmit(values);
   };
 
   return (
@@ -36,43 +29,54 @@ export default function RegisterPage() {
       form={form}
       layout="vertical"
       onFinish={handleFinish}
-      className="max-w-lg mx-auto space-y-4"
+      className="w-full mt-2 bg-white p-4 "
     >
-      <Form.Item label="First name" name="firstName" rules={[{ required: true, message: 'กรุณากรอกชื่อ' }]}>
-        <Input placeholder="example" />
-      </Form.Item>
+            {/* หัวข้อ */}
+      <Title level={4}>ข้อมูลออเดอร์</Title>
 
-      <Form.Item label="Last name" name="lastName" rules={[{ required: true, message: 'กรุณากรอกนามสกุล' }]}>
-        <Input />
-      </Form.Item>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item label="ชื่อร้านค้า" name="username">
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
 
-      <Form.Item label="Username" name="username" rules={[{ required: true, message: 'กรุณากรอกชื่อผู้ใช้' }]}>
-        <Input />
-      </Form.Item>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item label="ที่อยู่" name="address">
+            <Input.TextArea autoSize={{ minRows: 2, maxRows: 3 }} />
+          </Form.Item>
+        </Col>
+      </Row>
 
-      <Form.Item label="Email Address" name="email" rules={[{ type: 'email', required: true, message: 'กรุณากรอกอีเมลที่ถูกต้อง' }]}>
-        <Input />
-      </Form.Item>
+      <Row gutter={16}>
+        <Col span={6}>
+          <Form.Item label="ชื่อผู้ติดต่อ" name="name">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={6}>
+          <Form.Item label="เบอร์โทร" name="phone">
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
 
-      <Form.Item label="Phone" name="phone" rules={[{ required: true, message: 'กรุณากรอกเบอร์โทรศัพท์' }]}>
-        <Input />
-      </Form.Item>
+      <Row gutter={16}>
+        <Col span={6}>
+          <Form.Item label="จำนวนตะกร้า" name="firstName">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={6}>
+          <Form.Item label="น้ำหนัก" name="lastName">
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
 
-      <Form.Item label="Password" name="password" rules={[{ required: true, message: 'กรุณากรอกรหัสผ่าน' }]}>
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item name="agree" valuePropName="checked">
-        <Checkbox>
-          By registering, you agree to the Terms of Service...
-        </Checkbox>
-      </Form.Item>
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit" block>
-          Create account
-        </Button>
-      </Form.Item>
+      
     </Form>
   );
 }

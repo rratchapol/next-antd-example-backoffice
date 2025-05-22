@@ -69,7 +69,7 @@ const Navbar: React.FC<Props> = ({ children,user }) => {
         </div> */}
         <Menu  theme="light" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<DashboardOutlined />}>
-            <Link href="/">Dashboard</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<UserOutlined />}>
             <Link href="/users">ผู้ใช้งาน</Link>

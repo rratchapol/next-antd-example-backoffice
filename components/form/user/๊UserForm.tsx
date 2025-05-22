@@ -11,12 +11,12 @@ export default function UsersForm() {
       <Title level={4}>ข้อมูลผู้ใช้งานทั่วไป</Title>
 
       <Row gutter={16}>
-        <Col span={9}>
+        <Col span={8}>
           <Form.Item label="Username" name="username">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={9}>
+        <Col span={8}>
           <Form.Item label="อีเมล" name="email">
             <Input />
           </Form.Item>
@@ -24,12 +24,12 @@ export default function UsersForm() {
       </Row>
 
       <Row gutter={16}>
-        <Col span={6}>
+        <Col span={5}>
           <Form.Item label="เบอร์โทร" name="phone">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col span={5}>
           <Form.Item label="สถานะ" name="status">
             <Input />
           </Form.Item>

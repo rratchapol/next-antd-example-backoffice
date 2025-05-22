@@ -1,7 +1,7 @@
 
+"use client";
+import RestaurantTable from "@/components/tables/RestaurantTable";
 
-import UserTable  from "@/components/tables/UserTable";
-import { message } from "antd";
 
 export default function UserPage() {
 
@@ -9,7 +9,7 @@ export default function UserPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">ข้อมูลร้านค้า</h1>
-      <UserTable  />
+      <RestaurantTable  />
     </div>
   );
 }

@@ -7,18 +7,18 @@ import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant
 
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
-import { getUsers, User } from "@/services/userservice";
+import { getResturant, Resturant } from "@/services/restaurant";
 
 
 
 
 interface Props {
-  users: User[];
+  users: Resturant[];
 }
 
-const UserTable = () => {
+const RestaurantTable = () => {
   const [searchText, setSearchText] = useState("");
-  const [data, setData] = useState<User[]>([]);
+  const [data, setData] = useState<Resturant[]>([]);
 
   const router = useRouter();
 
@@ -38,13 +38,13 @@ const UserTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const users = await getUsers();
+      const users = await getResturant();
       setData(users);
     }
     fetchData();
   }, []);
 
-    const columns: ColumnsType<User> = [
+    const columns: ColumnsType<Resturant> = [
     {
       title: "ลำดับ",
       key: "index",
@@ -56,9 +56,15 @@ const UserTable = () => {
       key: "name",
     },
     {
-      title: "ตำแหน่ง",
-      dataIndex: "role",
-      key: "role",
+      title: "โลโก้",
+      dataIndex: "logo",
+      key: "logo",
+      render: (logo) => <img src={logo} alt="Logo" style={{ width: 50, height: 50 }} />,
+    },
+        {
+      title: "สาขา",
+      dataIndex: "branch",
+      key: "branch",
     },
     {
       title: "เขต",
@@ -113,10 +119,10 @@ return (
           className="w-full sm:w-auto !bg-green-500 !border-none"
           onClick={handleButtonClick}
         >
-          เพิ่มข้อมูลใหม่
+          เพิ่มข้อมูลร้านค้า
         </Button>
             {/* ส่วนเลือกสถานะ */}
-        <Select
+        {/* <Select
           defaultValue="ทั้งหมด"
           style={{ width: 200 }}
           onChange={handleChange}
@@ -126,7 +132,7 @@ return (
           <Option value="กำลังดำเนินการ">กำลังดำเนินการ</Option>
           <Option value="เกิดข้อผิดพลาด">เกิดข้อผิดพลาด</Option>
           <Option value="ทั้งหมด">ทั้งหมด</Option>
-        </Select>
+        </Select> */}
       </div>
 
     </div>
@@ -139,11 +145,6 @@ return (
         rowKey="key"
         pagination={{ pageSize: 10 }}
         scroll={{ x: 800 }}
-        onRow={(record) => ({
-          onClick: () => router.push(`/users/form/${record.id}`),
-          // onClick: () => router.push(`/users/form`),
-          style: { cursor: "pointer" }, 
-        })}
       />
     </div>
   </div>
@@ -151,4 +152,4 @@ return (
 
 };
 
-export default UserTable;
+export default RestaurantTable;

@@ -14,9 +14,10 @@ const { Title } = Typography;
 type UserFormProps = {
   onSubmit: (values: any) => void;
   onCancel?: () => void;
+  userId?: string;
 };
 
-export default function UserForm({ onSubmit, onCancel }: UserFormProps) {
+export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) {
   const [form] = useForm();
 
   const handleFinish = (values: any) => {
@@ -43,14 +44,14 @@ export default function UserForm({ onSubmit, onCancel }: UserFormProps) {
       <VillageForm />
 
       <div className="pt-10"></div>
-      <Form.Item className="text-right pt-4">
+      {/* <Form.Item className="text-right pt-4">
         <Button onClick={onCancel} className="mr-2 ">
           กลับไป
         </Button>
         <Button type="primary" htmlType="submit" className="!bg-green-500 !border-none">
           บันทึก
         </Button>
-      </Form.Item>
+      </Form.Item> */}
     </Form>
   );
 }

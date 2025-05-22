@@ -1,4 +1,3 @@
-import environment from "@/environment/environment";
 
 // services/loginService.ts
 import axios from './axiosInstance';

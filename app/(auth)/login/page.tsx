@@ -1,7 +1,7 @@
 "use client";
 
 import LoginForm from "@/components/auth/LoginForm";
-import login from "@/services/loginservice";
+// import login from "@/services/loginservice";
 import { useRouter } from "next/navigation";
 import { message } from "antd";
 import { useEffect, useState } from "react";

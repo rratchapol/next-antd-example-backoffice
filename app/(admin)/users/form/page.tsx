@@ -2,8 +2,9 @@
 
 import UserForm from "@/components/form/Userform";
 import { useRouter } from "next/navigation";
-import { message } from "antd"; 
+import { Button, message } from "antd"; 
 import { useEffect, useState } from "react";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 
 export default function LoginPage() {
   const [isClient, setIsClient] = useState(false);
@@ -23,12 +24,19 @@ export default function LoginPage() {
     router.push("/users");
   };
 
+  const onCancel = () => {
+    console.log("ยกเลิกการกรอกข้อมูล");
+    router.push("/users");
+  };
+
+
   if (!isClient) {
     return null; // ถ้ายังไม่ใช่ client ให้ไม่ render อะไร
   }
 
 return (
-  <><h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1><div className="flex justify-center items-center min-h-screen w-full bg-gray-100 px-2">
+  <>
+  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1><div className="flex justify-center items-center min-h-screen w-full bg-gray-100 px-2">
     <div className="w-full p-10 bg-white rounded-xl shadow-xl">
       <div className="text-center mb-6">
         {/* <h1 className="text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1> */}
@@ -36,6 +44,15 @@ return (
       </div>
       <UserForm onSubmit={handleSubmit} onCancel={handleCancel} />
     </div>
-  </div></>
+  </div>
+  <div className="flex justify-end mt-10">
+      <Button onClick={onCancel} className="mr-2">
+        กลับไป
+      </Button>
+      <Button type="primary" icon={<PlusOutlined />} htmlType="submit" className="!bg-green-500 !border-none">
+        บันทึก
+      </Button>
+  </div>
+  </>
 );
 }
