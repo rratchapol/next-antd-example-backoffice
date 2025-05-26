@@ -2,40 +2,48 @@
 
 export interface User {
   id: number;
-  name: string;
+  username: string;
+  firstname?: string;
+  lastname?: string;
+  email?: string; 
+  phone?: string; 
   role: string;
-  area: string;
+  status?: string;
+  address?: string;
+  district: string;
   province: string;
+  location_lat?: string;
+  location_lng?: string;
 }
 
 // mock data
 const mockUsers: User[] = [
   {
     id: 1,
-    name: "aaa aaaaaa",
+    username: "aaa aaaaaa",
     role: "manager",
-    area: "A1",
+    district: "A1",
     province: "Ayuthaya",
   },
   {
     id: 2,
-    name: "bbb bbbbbb",
+    username: "bbb bbbbbb",
     role: "staff",
-    area: "A2",
+    district: "A2",
     province: "Bangkok",
   },
   {
     id: 3,
-    name: "ccc cccccc",
+    username: "ccc cccccc",
     role: "admin",
-    area: "A3",
+    district: "A3",
     province: "Chiang Mai",
   },
   {
     id: 4,
-    name: "ddd dddddd",
+    username: "ddd dddddd",
     role: "user",
-    area: "A4",
+    district: "A4",
     province: "Phuket",
   },
 ];
@@ -54,10 +62,18 @@ export const getUsers = async (): Promise<User[]> => {
 const mockUsersbyId: User[] = [
   {
     id: 1,
-    name: "aaa aaaaaa",
-    role: "manager",
-    area: "A1",
+    username: "aaa aaaaaa",
+    firstname: "AAA",
+    lastname: "AAAAAA",
+    email: "aaa@gmail.com",
+    phone: "0123456789",
+    role: "อาสา",
+    status: "active",
+    address: "123/45 หมู่ 1 ตำบล A อำเภอ B จังหวัด C",
+    district: "A1",
     province: "Ayuthaya",
+    location_lat: "14.0000",
+    location_lng: "100.0000",
   },
 
 ];

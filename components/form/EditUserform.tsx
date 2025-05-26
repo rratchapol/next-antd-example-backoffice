@@ -8,19 +8,21 @@ import Title from "antd/es/typography/Title";
 import VolunteerForm from "./user/VolunteerForm";
 import RestaurantForm from "./user/RestaurantForm";
 import VillageForm from "./user/VillageForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type UserFormProps = {
   onSubmit: (values: any) => void;
   onCancel?: () => void;
   userId?: string;
+  initialValues?: any; 
+    isEditing?: boolean;
   
 };
 
-export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) {
+export default function UserForm({ onSubmit, onCancel, userId, initialValues, isEditing }: UserFormProps) {
   const [form] = useForm();
 
-    const [status, setStatus] = useState<string>('อาสา');
+    const [status, setStatus] = useState<string>(initialValues?.role || 'อาสา');
     
       const handleChange = (value: string) => {
       console.log('เลือกสถานะ:', value);
@@ -31,12 +33,19 @@ export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) 
     onSubmit(values);
   };
 
+    useEffect(() => {
+    if (initialValues) {
+      form.setFieldsValue(initialValues);
+    }
+    }, [initialValues, form]);
+
   return (
     <Form
       form={form}
       layout="vertical"
       onFinish={handleFinish}
       className="w-full mt-2 bg-white p-4 "
+      disabled={!isEditing}
     >
        {/* ฟอร์มข้อมูลผู้ใช้ */}
       {/* <UsersForm /> */}
@@ -47,7 +56,7 @@ export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) 
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={8} >
           <Form.Item label="Username" name="username">
-            <Input />
+            <Input  />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
@@ -82,12 +91,12 @@ export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) 
 
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={8}>
-          <Form.Item label="ชื่อ" name="firstName">
+          <Form.Item label="ชื่อ" name="firstname">
             <Input />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
-          <Form.Item label="นามสกุล" name="lastName">
+          <Form.Item label="นามสกุล" name="lastname">
             <Input />
           </Form.Item>
         </Col>
