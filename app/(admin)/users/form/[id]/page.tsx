@@ -1,5 +1,6 @@
 // filepath: /users/form/[id]/page.tsx
 "use client";
+import EditUserform from "@/components/form/EditUserform";
 import UserForm from "@/components/form/Userform";
 import { getUsersbyId, User } from "@/services/userservice";
 import { EditOutlined } from "@ant-design/icons";
@@ -25,7 +26,6 @@ export default function UserFormPage({ params }: { params: { id: string } }) {
   }
   const router = useRouter();
   const handleSubmit = (values: any) => {
-    // ทำสิ่งที่ต้องการเมื่อ submit (เช่น เรียก API หรือ redirect)
     console.log("submit", values);
   };
 
@@ -40,7 +40,7 @@ export default function UserFormPage({ params }: { params: { id: string } }) {
       <div className="w-full p-10 bg-white rounded-xl shadow-xl">
         <div className="text-center mb-6">
         </div>
-        <UserForm userId={params.id} onSubmit={handleSubmit}></UserForm>
+        <EditUserform userId={params.id} onSubmit={handleSubmit}></EditUserform>
       </div>
 
     </div>

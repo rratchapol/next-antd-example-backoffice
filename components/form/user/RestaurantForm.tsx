@@ -21,7 +21,7 @@ export default function RestaurantForm() {
       <Title level={4}>ข้อมูลเกี่ยวกับร้านค้า</Title>
 
       <Row gutter={16}>
-        <Col span={7}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <Form.Item
             label="Logo ร้าน"
             name="logo"
@@ -46,12 +46,12 @@ export default function RestaurantForm() {
       </Row>
 
       <Row gutter={16}>
-        <Col span={7}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <Form.Item label="ชื่อร้าน" name="vehicleNo">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <Form.Item label="ตำเเหน่งในร้าน" name="weight">
             <Input />
           </Form.Item>
@@ -59,22 +59,22 @@ export default function RestaurantForm() {
       </Row>
 
       <Row gutter={16}>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="แบรนด์" name="equipment">
             <Select placeholder="เลือกแบรนด์" />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="ละติจูด" name="latitude">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="ลองจิจูด" name="longitude">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="โลเคชั่น" name="map">
             <Button icon={<EnvironmentOutlined />} type="primary" className="!bg-green-500 !border-none">
               choose your map

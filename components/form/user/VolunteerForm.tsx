@@ -11,17 +11,17 @@ export default function VolunteerForm() {
       <Title level={4}>ข้อมูลเกี่ยวกับอาสา</Title>
 
       <Row gutter={16}>
-        <Col span={7}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <Form.Item label="ประเภทรถยนต์" name="cowType">
             <Select placeholder="เลือกประเภทรถยนต์" />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <Form.Item label="ทะเบียนรถยนต์" name="vehicleNo">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={7}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <Form.Item label="น้ำหนักรวมสูงสุด (kg)" name="weight">
             <Input />
           </Form.Item>
@@ -29,22 +29,22 @@ export default function VolunteerForm() {
       </Row>
 
       <Row gutter={16}>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="เครือข่าย" name="equipment">
             <Select placeholder="เลือกเครือข่าย" />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="ละติจูด" name="latitude">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="ลองจิจูด" name="longitude">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6}>
           <Form.Item label="โลเคชั่น" name="map">
             <Button icon={<EnvironmentOutlined />} type="primary" className="!bg-green-500 !border-none">
               choose your map

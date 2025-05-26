@@ -10,7 +10,6 @@ export default function LoginPage() {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
-  // ตรวจสอบว่าเป็น client-side ก่อนการใช้งาน localStorage
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -31,12 +30,13 @@ export default function LoginPage() {
 
 
   if (!isClient) {
-    return null; // ถ้ายังไม่ใช่ client ให้ไม่ render อะไร
+    return null; 
   }
 
 return (
   <>
-  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1><div className="flex justify-center items-center min-h-screen w-full bg-gray-100 px-2">
+  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1>
+  <div className="flex justify-center items-center min-h-screen w-full bg-gray-100 ">
     <div className="w-full p-10 bg-white rounded-xl shadow-xl">
       <div className="text-center mb-6">
         {/* <h1 className="text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1> */}

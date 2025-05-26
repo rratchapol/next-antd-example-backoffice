@@ -17,7 +17,7 @@ type UserFormProps = {
   userId?: string;
 };
 
-export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) {
+export default function UserForm({ onSubmit }: UserFormProps) {
   const [form] = useForm();
 
   const handleFinish = (values: any) => {
@@ -34,14 +34,7 @@ export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) 
        {/* ฟอร์มข้อมูลผู้ใช้ */}
       <UsersForm />
 
-      {/* ฟอร์มข้อมูลอาสา */}
-      <VolunteerForm />
 
-      {/* ฟอร์มข้อมูลร้านค้า */}
-      <RestaurantForm />
-
-      {/* ฟอร์มข้อมูลหมู่บ้าน */}
-      <VillageForm />
 
       <div className="pt-10"></div>
       {/* <Form.Item className="text-right pt-4">

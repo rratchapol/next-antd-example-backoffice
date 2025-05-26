@@ -1,25 +1,47 @@
-// component/form/user/UserForm.tsx
-import { EnvironmentOutlined } from "@ant-design/icons";
-import { Row, Col, Form, Select, Input, Typography, Divider, Button } from "antd";
+// components/form/EditUserForm.tsx
+"use client";
+
+import { Col, Form, Input, Row, Select } from "antd";
+import { useForm } from "antd/es/form/Form";
+import UsersForm from "./user/๊UserForm";
+import Title from "antd/es/typography/Title";
+import VolunteerForm from "./user/VolunteerForm";
+import RestaurantForm from "./user/RestaurantForm";
+import VillageForm from "./user/VillageForm";
 import { useState } from "react";
-import VolunteerForm from "./VolunteerForm";
-import RestaurantForm from "./RestaurantForm";
-import VillageForm from "./VillageForm";
 
-const { Title } = Typography;
-
-export default function UsersForm() {
-
-  const [status, setStatus] = useState<string>('อาสา');
+type UserFormProps = {
+  onSubmit: (values: any) => void;
+  onCancel?: () => void;
+  userId?: string;
   
-    const handleChange = (value: string) => {
-    console.log('เลือกสถานะ:', value);
-    setStatus(value);
+};
+
+export default function UserForm({ onSubmit, onCancel, userId }: UserFormProps) {
+  const [form] = useForm();
+
+    const [status, setStatus] = useState<string>('อาสา');
+    
+      const handleChange = (value: string) => {
+      console.log('เลือกสถานะ:', value);
+      setStatus(value);
+    };
+
+  const handleFinish = (values: any) => {
+    onSubmit(values);
   };
 
   return (
-    <div className="w-full">
-      {/* หัวข้อ */}
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={handleFinish}
+      className="w-full mt-2 bg-white p-4 "
+    >
+       {/* ฟอร์มข้อมูลผู้ใช้ */}
+      {/* <UsersForm /> */}
+
+           {/* หัวข้อ */}
       <Title level={4}>ข้อมูลผู้ใช้งานทั่วไป</Title>
 
       <Row gutter={16}>
@@ -102,6 +124,8 @@ export default function UsersForm() {
         </>
       )}
 
-    </div>
+
+      <div className="pt-10"></div>
+    </Form>
   );
 }
