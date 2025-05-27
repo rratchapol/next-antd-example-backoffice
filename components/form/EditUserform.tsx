@@ -1,7 +1,7 @@
 // components/form/EditUserForm.tsx
 "use client";
 
-import { Col, Form, Input, Row, Select } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
 import UsersForm from "./user/๊UserForm";
 import Title from "antd/es/typography/Title";
@@ -9,6 +9,7 @@ import VolunteerForm from "./user/VolunteerForm";
 import RestaurantForm from "./user/RestaurantForm";
 import VillageForm from "./user/VillageForm";
 import { useEffect, useState } from "react";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 
 type UserFormProps = {
   onSubmit: (values: any) => void;
@@ -19,16 +20,24 @@ type UserFormProps = {
   
 };
 
-export default function UserForm({ onSubmit, onCancel, userId, initialValues, isEditing }: UserFormProps) {
+export default function UserForm({ onSubmit, onCancel, userId, initialValues }: UserFormProps) {
   const [form] = useForm();
 
     const [status, setStatus] = useState<string>(initialValues?.role || 'อาสา');
+    const [isEditing, setIsEditing] = useState(false);
+
     
       const handleChange = (value: string) => {
       console.log('เลือกสถานะ:', value);
       setStatus(value);
     };
 
+  const submit = (values: any) => {
+    console.log("submit --:", values);
+    onSubmit(values);
+    setIsEditing(false); // ปิดโหมดแก้ไขหลังจากบันทึก
+
+  };
   const handleFinish = (values: any) => {
     onSubmit(values);
   };
@@ -39,13 +48,18 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues, is
     }
     }, [initialValues, form]);
 
+
+      // ฟังก์ชันแสดง Modal ยืนยัน
+
+
+
   return (
     <Form
       form={form}
       layout="vertical"
       onFinish={handleFinish}
       className="w-full mt-2 bg-white p-4 "
-      disabled={!isEditing}
+      // disabled={!isEditing}
     >
        {/* ฟอร์มข้อมูลผู้ใช้ */}
       {/* <UsersForm /> */}
@@ -56,12 +70,12 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues, is
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={8} >
           <Form.Item label="Username" name="username">
-            <Input  />
+            <Input disabled={!isEditing} />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
           <Form.Item label="อีเมล" name="email">
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
         </Col>
       </Row>
@@ -69,17 +83,22 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues, is
       <Row gutter={16}>
         <Col xs={24} sm={12} md={8} lg={6}>
           <Form.Item label="เบอร์โทร" name="phone">
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
         </Col>
         <Col xs={24} sm={12} md={8} lg={5}>
           <Form.Item label="สถานะ" name="status">
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
         </Col>
         <Col xs={24} sm={12} md={8} lg={5}>
           <Form.Item label="บทบาท" name="role">
-            <Select placeholder="เลือกบทบาท"  onChange={handleChange} value={status} >
+            <Select
+              placeholder="เลือกบทบาท"
+              onChange={handleChange}
+              value={status}
+              disabled={!isEditing}
+            >
               <Select.Option value="อาสา">อาสา</Select.Option>
               <Select.Option value="ร้านค้า">ร้านค้า</Select.Option>
               <Select.Option value="ชุมชน">ชุมชน</Select.Option>
@@ -92,19 +111,19 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues, is
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={8}>
           <Form.Item label="ชื่อ" name="firstname">
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
           <Form.Item label="นามสกุล" name="lastname">
-            <Input />
+            <Input disabled={!isEditing} />
           </Form.Item>
         </Col>
       </Row>
       <Row gutter={16}>
         <Col xs={24} sm={24} md={24} lg={16}>
           <Form.Item label="ที่อยู่" name="address">
-            <Input.TextArea autoSize={{ minRows: 2, maxRows: 3 }} />
+            <Input.TextArea autoSize={{ minRows: 2, maxRows: 3 }} disabled={!isEditing} />
           </Form.Item>
         </Col>
       </Row>
@@ -112,12 +131,12 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues, is
       <Row gutter={16}>
         <Col xs={24} sm={24} md={24} lg={8}>
           <Form.Item label="จังหวัด" name="province">
-            <Select placeholder="เลือกจังหวัด" />
+            <Select placeholder="เลือกจังหวัด" disabled={!isEditing} />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={24} lg={8}>
           <Form.Item label="เขต/อำเภอ" name="district">
-            <Select placeholder="เลือกเขต/อำเภอ" />
+            <Select placeholder="เลือกเขต/อำเภอ" disabled={!isEditing} />
           </Form.Item>
         </Col>
       </Row>
@@ -135,6 +154,32 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues, is
 
 
       <div className="pt-10"></div>
+      <div className="flex justify-end mt-10">
+        <Button onClick={onCancel} className="mr-2">
+          กลับไป
+        </Button>
+        {!isEditing ? (
+          <Button
+            icon={<EditOutlined />}
+            className="!bg-yellow-500 !border-none"
+            onClick={() => setIsEditing(true)}
+            // ไม่มี disabled ที่นี่
+          >
+            แก้ไข
+          </Button>
+        ) : (
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            // htmlType="submit"
+            className="!bg-green-500 !border-none"
+            // onClick={() => submit(form.getFieldsValue())}
+            onClick={() => form.submit()} // ใช้ form.submit() เพื่อส่งข้อมูล
+          >
+            บันทึก
+          </Button>
+        )}
+      </div>
     </Form>
   );
 }

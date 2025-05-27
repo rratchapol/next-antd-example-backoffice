@@ -56,13 +56,10 @@ export default function UserFormPage({ params }: { params: { id: string } }) {
           )}
         </div>
       </div>
-      <div className="flex justify-end mt-10">
+      {/* <div className="flex justify-end mt-10">
         <Button onClick={onCancel} className="mr-2">
           กลับไป
         </Button>
-        {/* <Button type="primary" icon={<EditOutlined />} htmlType="submit" className="!bg-green-500 !border-none">
-          บันทึก
-        </Button> */}
         {!isEditing ? (
             <Button
               icon={<EditOutlined />}
@@ -82,7 +79,8 @@ export default function UserFormPage({ params }: { params: { id: string } }) {
               บันทึก
             </Button>
         )}
-      </div>
+      </div> */}
+      
     </>
   );
 }

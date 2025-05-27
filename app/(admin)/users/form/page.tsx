@@ -45,14 +45,14 @@ return (
       <UserForm onSubmit={handleSubmit} onCancel={handleCancel} />
     </div>
   </div>
-  <div className="flex justify-end mt-10">
+  {/* <div className="flex justify-end mt-10">
       <Button onClick={onCancel} className="mr-2">
         กลับไป
       </Button>
       <Button type="primary" icon={<PlusOutlined />} htmlType="submit" className="!bg-green-500 !border-none">
         บันทึก
       </Button>
-  </div>
+  </div> */}
   </>
 );
 }
