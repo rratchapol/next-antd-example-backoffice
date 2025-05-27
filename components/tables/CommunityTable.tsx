@@ -7,18 +7,18 @@ import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant
 
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
-import { getUsers, User } from "@/services/userservice";
+import { Community, getCommunities } from "@/services/communityservice";
 
 
 
 
 interface Props {
-  users: User[];
+  community: Community[];
 }
 
-const UserTable = () => {
+const CommunityTable = () => {
   const [searchText, setSearchText] = useState("");
-  const [data, setData] = useState<User[]>([]);
+  const [data, setData] = useState<Community[]>([]);
 
   const router = useRouter();
 
@@ -38,14 +38,13 @@ const UserTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const users = await getUsers();
-      console.log("Fetched users:", users);
+      const users = await getCommunities();
       setData(users);
     }
     fetchData();
   }, []);
 
-    const columns: ColumnsType<User> = [
+    const columns: ColumnsType<Community> = [
     {
       title: "ลำดับ",
       key: "index",
@@ -57,9 +56,14 @@ const UserTable = () => {
       key: "username",
     },
     {
-      title: "ตำแหน่ง",
-      dataIndex: "role",
-      key: "role",
+      title: "จำนวนประชากร",
+      dataIndex: "population",
+      key: "population",
+    },
+    {
+      title: "เครือข่าย",
+      dataIndex: "network",
+      key: "network",
     },
     {
       title: "เขต",
@@ -152,4 +156,4 @@ return (
 
 };
 
-export default UserTable;
+export default CommunityTable;

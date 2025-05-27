@@ -59,7 +59,7 @@ export default function UserForm({ onSubmit }: UserFormProps) {
         <Button onClick={onCancel} className="mr-2 ">
           กลับไป
         </Button>
-        <Button type="primary" htmlType="submit" className="!bg-green-500 !border-none">
+        <Button type="primary" onClick={() => setShowConfirm(true)} className="!bg-green-500 !border-none">
           บันทึก
         </Button>
       </Form.Item>

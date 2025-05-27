@@ -7,18 +7,18 @@ import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant
 
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
-import { getUsers, User } from "@/services/userservice";
+import { Brand, getBrands } from "@/services/brandservice";
 
 
 
 
 interface Props {
-  users: User[];
+  users: Brand[];
 }
 
-const UserTable = () => {
+const BrandTable = () => {
   const [searchText, setSearchText] = useState("");
-  const [data, setData] = useState<User[]>([]);
+  const [data, setData] = useState<Brand[]>([]);
 
   const router = useRouter();
 
@@ -38,14 +38,14 @@ const UserTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const users = await getUsers();
+      const users = await getBrands();
       console.log("Fetched users:", users);
       setData(users);
     }
     fetchData();
   }, []);
 
-    const columns: ColumnsType<User> = [
+    const columns: ColumnsType<Brand> = [
     {
       title: "ลำดับ",
       key: "index",
@@ -55,11 +55,6 @@ const UserTable = () => {
       title: "ชื่อ",
       dataIndex: "username",
       key: "username",
-    },
-    {
-      title: "ตำแหน่ง",
-      dataIndex: "role",
-      key: "role",
     },
     {
       title: "เขต",
@@ -152,4 +147,4 @@ return (
 
 };
 
-export default UserTable;
+export default BrandTable;
