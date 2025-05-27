@@ -35,24 +35,14 @@ export default function LoginPage() {
 
 return (
   <>
-  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1>
+  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลร้านค้า</h1>
   <div className="flex justify-center items-center min-h-screen w-full bg-gray-100 ">
     <div className="w-full p-10 bg-white rounded-xl shadow-xl">
       <div className="text-center mb-6">
-        {/* <h1 className="text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลผู้ใช้</h1> */}
-        {/* <p className="text-gray-500 mt-1">กรอกข้อมูลด้านล่างให้ครบถ้วน</p> */}
       </div>
       <UserForm onSubmit={handleSubmit} onCancel={handleCancel} />
     </div>
   </div>
-  {/* <div className="flex justify-end mt-10">
-      <Button onClick={onCancel} className="mr-2">
-        กลับไป
-      </Button>
-      <Button type="primary" icon={<PlusOutlined />} htmlType="submit" className="!bg-green-500 !border-none">
-        บันทึก
-      </Button>
-  </div> */}
   </>
 );
 }

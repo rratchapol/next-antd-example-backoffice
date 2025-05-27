@@ -33,7 +33,7 @@ const RestaurantTable = () => {
 
 
   const handleButtonClick = () => {
-    router.push("/users/form");
+    router.push("/restaurant/form");
   };
 
   useEffect(() => {
@@ -119,7 +119,7 @@ return (
           className="w-full sm:w-auto !bg-green-500 !border-none"
           onClick={handleButtonClick}
         >
-          เพิ่มข้อมูลร้านค้า
+          เพิ่มร้านค้า
         </Button>
             {/* ส่วนเลือกสถานะ */}
         {/* <Select

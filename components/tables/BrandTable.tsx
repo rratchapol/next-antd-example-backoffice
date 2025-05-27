@@ -33,7 +33,7 @@ const BrandTable = () => {
 
 
   const handleButtonClick = () => {
-    router.push("/users/form");
+    router.push("/brands/form");
   };
 
   useEffect(() => {
@@ -109,7 +109,7 @@ return (
           className="w-full sm:w-auto !bg-green-500 !border-none"
           onClick={handleButtonClick}
         >
-          เพิ่มข้อมูลใหม่
+          เพิ่มแบรนด์
         </Button>
             {/* ส่วนเลือกสถานะ */}
         <Select

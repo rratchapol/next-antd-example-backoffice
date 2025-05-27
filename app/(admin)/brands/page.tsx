@@ -1,8 +1,6 @@
 
 
 import BrandTable from "@/components/tables/BrandTable";
-import UserTable  from "@/components/tables/UserTable";
-import { message } from "antd";
 
 export default function UserPage() {
 

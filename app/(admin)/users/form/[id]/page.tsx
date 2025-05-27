@@ -1,7 +1,7 @@
 // filepath: /users/form/[id]/page.tsx
 "use client";
-import EditUserform from "@/components/form/EditUserform";
-import UserForm from "@/components/form/Userform";
+import EditUserform from "@/components/form/user/EditUserform";
+import UserForm from "@/components/form/user/Userform";
 import { getUsersbyId, User } from "@/services/userservice";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";

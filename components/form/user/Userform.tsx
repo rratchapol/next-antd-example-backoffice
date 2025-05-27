@@ -4,11 +4,11 @@
 import { Form, Input, Button, Row, Col, Divider, Select, DatePicker, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import VolunteerForm from "./user/VolunteerForm";
-import UsersForm from "./user/๊UserForm";
-import RestaurantForm from "./user/RestaurantForm";
-import VillageForm from "./user/VillageForm";
-import PopUp from "../popup/PopUp";
+import VolunteerForm from "./VolunteerForm";
+import UsersForm from "./๊UserForm";
+import RestaurantForm from "./RestaurantForm";
+import VillageForm from "./VillageForm";
+import PopUp from "../../popup/PopUp";
 import { useState } from "react";
 
 const { Title } = Typography;
