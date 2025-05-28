@@ -33,7 +33,7 @@ const CommunityTable = () => {
 
 
   const handleButtonClick = () => {
-    router.push("/users/form");
+    router.push("/community/form");
   };
 
   useEffect(() => {

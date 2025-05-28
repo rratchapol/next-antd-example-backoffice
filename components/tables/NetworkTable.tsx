@@ -33,7 +33,7 @@ const NetworkTable = () => {
 
 
   const handleButtonClick = () => {
-    router.push("/users/form");
+    router.push("/networks/form");
   };
 
   useEffect(() => {

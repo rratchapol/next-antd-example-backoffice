@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (values: { username: string; password: string }) => {
     try {
-       router.push("/users");
+       router.push("/dashboard");
       // const res = await loginservice(values);
       // if (res.token) {
       //   localStorage.setItem("token", res.token);

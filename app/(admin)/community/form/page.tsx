@@ -1,0 +1,45 @@
+"use client";
+
+import CommmunityForm from "@/components/form/community/Communityform";
+import RestaurantForm from "@/components/form/restaurant/Restaurantform";
+import UserForm from "@/components/form/user/Userform";
+import UserTable from "@/components/tables/UserTable";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+export default function CommunityformPage() {
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const handleSubmit = (data: any) => {
+    console.log("ส่งข้อมูล: ", data);
+  };
+
+  const handleCancel = () => {
+    console.log("ยกเลิกการกรอกข้อมูล");
+    router.push("/community");
+  };
+
+
+  if (!isClient) {
+    return null; 
+  }
+
+return (
+  <>
+  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลชุมชน</h1>
+  <div className="flex justify-center items-center  w-full bg-gray-100 ">
+    <div className="w-full p-10 bg-white rounded-xl shadow-xl">
+      <div className="text-center mb-6">
+      </div>
+      <CommmunityForm onSubmit={handleSubmit} onCancel={handleCancel} />
+    </div>
+  </div>
+  
+  </>
+);
+}
