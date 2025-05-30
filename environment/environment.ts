@@ -1,5 +1,5 @@
 const environment = {
-  BaseUrl: "http://backend.kxchanges.online/api",
+  BaseUrl: "http://20.198.254.208:8080",
 };
 
 export default environment;

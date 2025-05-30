@@ -18,20 +18,20 @@ export default function NavbarLayout({
   const {user, isAuthenticated} = useAuth();
 
   if(user){
-    console.log("ดู ข้อมูลผู้ใช้", user);
+    console.log("ดู ข้อมูลผู้ใช้ -----", user);
 
   }
-  // if (!isAuthenticated) {
-  //   message.error("กรุณาเข้าสู่ระบบ");
-  //   console.log("ออกจากระบบ");
-  //   window.location.href = "/login";
-  //   return null; 
-  // }
+  if (!isAuthenticated) {
+    message.error("กรุณาเข้าสู่ระบบ");
+    console.log("ออกจากระบบ");
+    window.location.href = "/login";
+    return null; 
+  }
 
   return (
     // <AuthProvider>
     <div className="min-h-screen bg-gray-50">
-      <Navbar user={user ? { name: (user as any).customer.name } : undefined}>
+      <Navbar user={user ? { name: (user as any).data } : undefined}>
         <main className="p-4 md:p-8">{children}</main>
       </Navbar >
     </div>

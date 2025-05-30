@@ -7,18 +7,20 @@ import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 // import loginservice from "@/services/loginservice";
 import { message } from "antd";
 import { loginservice } from "@/services/loginservice";
+import PopUp, { PopUpLoginFail } from "@/components/popup/PopUp";
 interface User {
-  admin_id: string;
-  role: string;
-//   name?: string;
-//   image_url?: string;
-//   token_balance?: number;
+  id: number;
+  email: string;
+  firstname: string;
+  lastname: string;
+  phone: string;
+  line_uuid: string;
 }
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (values: { username: string; password: string }) => Promise<void>;
+  login: (values: { email: string; password: string }) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
   isReady: boolean;
@@ -27,6 +29,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [showLoginFail, setShowLoginFail] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isReady, setIsReady] = useState(false); // ใช้เพื่อบอกว่า auth ได้ถูกตรวจสอบแล้ว
@@ -44,7 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      const userData = await api.get<User>("/customer/1");
+      const userData = await api.get<User>("/auth/profile");
       setUser(userData.data);
     } catch (error) {
       console.error("Auth check failed:", error);
@@ -55,17 +58,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const login = async (values: { username: string; password: string }) => {
+  const login = async (values: { email: string; password: string }) => {
     try {
-       router.push("/dashboard");
-      // const res = await loginservice(values);
-      // if (res.token) {
-      //   localStorage.setItem("token", res.token);
-      //   checkAuth();
-      //   router.push("/users");
-      // } else {
-      //   message.error(res.message || "เข้าสู่ระบบล้มเหลว");  
-      // }
+      const res = await loginservice(values);
+      // console.log("response:", res);
+      // console.log("Login response:", res.data);
+      // console.log("token response:", res.data.accessToken);
+      // console.log("response status:", res.status);
+      if (res.status == "success") {
+        localStorage.setItem("token", res.data.accessToken);
+        checkAuth();
+        router.push("/dashboard");
+      } else {
+        setShowLoginFail(true);
+        console.error("Login errorxxxxxxxx:", res.message);
+      }
     } catch (error) {
       message.error("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
       console.error("Login error:", error);
@@ -93,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         loading,
-        login,
+        login ,
         logout,
         isAuthenticated: !!user,
         isReady,
@@ -101,8 +108,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     >
       {/* {children} */}
       {!loading ? children : <LoadingSpinner />}
+    <PopUpLoginFail
+      open={showLoginFail}
+      title="เข้าสู่ระบบไม่สำเร็จ"
+      content="อีเมลหรือรหัสผ่านไม่ถูกต้อง"
+      onOk={() => setShowLoginFail(false)}
+      onCancel={() => setShowLoginFail(false)}
+      okText="ตกลง"
+      cancelText="ปิด"
+    />
     </AuthContext.Provider>
+    
   );
+
+  
 }
 
 export function useAuth() {
@@ -116,3 +135,5 @@ export function useAuth() {
 function setToken(token: any) {
     throw new Error("Function not implemented.");
 }
+
+

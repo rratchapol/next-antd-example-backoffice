@@ -13,18 +13,25 @@ import {
   ShopOutlined,
 } from '@ant-design/icons';
 import Link from 'next/link';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth  } from '@/contexts/AuthContext';
+import { log } from 'console';
 
 const { Sider, Header, Content } = Layout;
 
 interface Props {
   children: ReactNode;
     user?: {
-    name?: string;
+      name?: {
+        firstname?: string;
+        lastname?: string;
+      }
+
   };
 }
 
 const Navbar: React.FC<Props> = ({ children,user }) => {
+  const { logout } = useAuth();
+
 
   const menuItems: MenuProps['items']  = [
     {
@@ -39,11 +46,15 @@ const Navbar: React.FC<Props> = ({ children,user }) => {
       danger: true,
       icon: <LogoutOutlined />,
       label: 'ล็อคเอ้าท์',
+      onClick: () => {
+        console.log('Logout');
+        logout();
+      }
     },
 ];
 
   return (
-    console.log("ดู ข้อมูลผู้ใช้ccc",user),
+    console.log("ดู ข้อมูลผู้ใช้ccc", user?.name?.firstname),
     <Layout>
       {/* Navbar Header */}
     <Header style={{ background: '#1BC367', padding: '0 24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -54,8 +65,8 @@ const Navbar: React.FC<Props> = ({ children,user }) => {
               icon={<UserOutlined />}
               style={{ backgroundColor: '#fff' }}
             />
-            {/* <span className="text-white font-semibold px-2">{user?.name || 'User'}</span> */}
-            <span className="text-white font-semibold px-2">{'User'}</span>
+            <span className="text-white font-semibold px-2">{user ? `${user?.name?.firstname} ${user?.name?.lastname}` : 'User'}</span>
+            {/* <span className="text-white font-semibold px-2">{'User'}</span> */}
 
           </div>
         </Dropdown>

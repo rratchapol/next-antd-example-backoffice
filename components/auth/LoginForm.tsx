@@ -7,7 +7,7 @@ import Image from "next/image";
 
 
 type LoginFormProps = {
-  onLogin: (values: { username: string; password: string }) => void;
+  onLogin: (values: { email: string; password: string }) => void;
 };
 
 export default function LoginForm({ onLogin }: LoginFormProps) {
@@ -54,7 +54,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
           className="w-full max-w-sm"
         >
           <Form.Item
-            name="username"
+            name="email"
             rules={[{ required: true, message: "กรุณากรอกชื่อผู้ใช้" }]}
           >
             <Input
@@ -80,9 +80,9 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               <Checkbox>จดจำฉัน</Checkbox>
             </Form.Item> */}
             <a></a>
-            <a className="text-sm !text-gray-900" href="#">
+            {/* <a className="text-sm !text-gray-900" href="#">
               ลืมรหัสผ่าน?
-            </a>
+            </a> */}
           </div>
 
           <Form.Item>
