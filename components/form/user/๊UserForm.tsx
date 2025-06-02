@@ -11,6 +11,7 @@ const { Title } = Typography;
 export default function UsersForm() {
 
   const [status, setStatus] = useState<string>('อาสา');
+  const [statusisactive, setStatusisactive] = useState<string>('active');
   
     const handleChange = (value: string) => {
     console.log('เลือกสถานะ:', value);
@@ -23,12 +24,17 @@ export default function UsersForm() {
       <Title level={4}>ข้อมูลผู้ใช้งานทั่วไป</Title>
 
       <Row gutter={16}>
-        <Col xs={24} sm={24} md={12} lg={8} >
+        <Col xs={24} sm={24} md={12} lg={5} >
           <Form.Item label="Username" name="username">
             <Input />
           </Form.Item>
         </Col>
-        <Col xs={24} sm={24} md={12} lg={8}>
+        <Col xs={24} sm={24} md={12} lg={5} >
+          <Form.Item label="Password" name="password">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={6}>
           <Form.Item label="อีเมล" name="email">
             <Input />
           </Form.Item>
@@ -43,12 +49,16 @@ export default function UsersForm() {
         </Col>
         <Col xs={24} sm={12} md={8} lg={5}>
           <Form.Item label="สถานะ" name="status">
-            <Input />
+            {/* <Input /> */}
+            <Select placeholder="เลือกสถานะ"  value={statusisactive} >
+              <Select.Option value="active">Active</Select.Option>
+              <Select.Option value="inactive">Inactive</Select.Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col xs={24} sm={12} md={8} lg={5}>
           <Form.Item label="บทบาท" name="role">
-            <Select placeholder="เลือกบทบาท"  onChange={handleChange} value={status} >
+            <Select placeholder="เลือกบทบาท" onChange={handleChange} value={status} >
               <Select.Option value="อาสา">อาสา</Select.Option>
               <Select.Option value="ร้านค้า">ร้านค้า</Select.Option>
               <Select.Option value="ชุมชน">ชุมชน</Select.Option>

@@ -27,15 +27,15 @@ export default function Dashboard() {
 
       {/* Summary Section */}
       {/* Summary Cards */}
-      {/* <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-4 gap-4 mb-6">
         <SummaryCard title="Monthly Donation Weight (kg)" value={summary.donationWeight} subtitle="YTD Donation Weight (kg)" subtitleValue={summary.ytdDonationWeight} />
         <SummaryCard title="Monthly Meal Served Eq. (meals)" value={summary.mealServed} subtitle="YTD Meal Served Eq. (meals)" subtitleValue={summary.ytdMealServed} />
         <SummaryCard title="Monthly CO2e (kg)" value={summary.co2e} subtitle="YTD CO2e (kg)" subtitleValue={summary.ytdCO2e} />
-        <div className="bg-green-100 rounded-xl p-4">
+        <div className="bg-white rounded-xl p-4">
           <h3 className="text-sm font-semibold mb-2">Beneficiary Distribution</h3>
           <Pie data={pieData} />
         </div>
-      </div> */}
+      </div>
 
       
 
@@ -54,7 +54,7 @@ export default function Dashboard() {
 
 function SummaryCard({ title, value, subtitle, subtitleValue }: any) {
   return (
-    <div className="bg-green-100 rounded-xl p-4">
+    <div className="bg-white rounded-xl p-4">
       <h3 className="text-sm font-semibold">{title}</h3>
       <p className="text-2xl font-bold text-gray-800">{value.toLocaleString()}</p>
       <div className="mt-2 text-sm">
@@ -68,9 +68,11 @@ function SummaryCard({ title, value, subtitle, subtitleValue }: any) {
 function ChartCard({ title, children }: any) {
   return (
     // <div className="bg-green-100 rounded-xl p-4">
+    <div className="bg-white rounded-xl p-4">
     <div className=" rounded-xl p-4">
       <h3 className="text-sm font-semibold mb-2">{title}</h3>
       {children}
+    </div>
     </div>
   );
 }

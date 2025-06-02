@@ -1,7 +1,6 @@
 // filepath: /users/form/[id]/page.tsx
 "use client";
-import OrderForm from "@/components/form/Orderform";
-import UserForm from "@/components/form/user/Userform";
+import OrderForm from "@/components/form/order/Orderform";
 import { getUsersbyId, User } from "@/services/userservice";
 import { EditOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -44,14 +43,14 @@ export default function OrderFormPage({ params }: { params: { id: string } }) {
       </div>
 
     </div>
-    <div className="flex justify-end mt-10">
+    {/* <div className="flex justify-end mt-10">
         <Button onClick={onCancel} className="mr-2">
         กลับไป
         </Button>
         <Button type="primary" icon={<EditOutlined />} htmlType="submit" className="!bg-green-500 !border-none">
         แก้ไข
         </Button>
-    </div>
+    </div> */}
     </>
 );
 }

@@ -5,8 +5,6 @@ import axios from './axiosInstance';
 
 
 export const loginservice = async (values: { email: string; password: string }) => {
-  // const response = await axios.post('/auth/login', { email: values.email, password: values.password });
-  // return response.data;
 
   try {
     // const res = await axios.post("/auth/login", { email: "test@example.com", password: "Password@123" });
