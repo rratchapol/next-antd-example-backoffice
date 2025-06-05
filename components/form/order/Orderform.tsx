@@ -15,7 +15,7 @@ type UserFormProps = {
 
 export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps) {
   const [form] = useForm();
-  const sampleImages = Array(5).fill('/assets/pic_icon.png');
+  const sampleImages = Array(5).fill('https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg');
 
   const orderList = [
   {
@@ -31,7 +31,7 @@ export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps)
       { label: "ขนมแปก", value: "1" },
     ],
     note: "น้องต้องมาร์ท 13 การเล่น",
-    images: ['/assets/pic_icon.png', '/assets/pic_icon.png', '/assets/pic_icon.png', '/assets/pic_icon.png', '/assets/pic_icon.png'].slice(0, 6),
+    images: ['https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg'].slice(0, 6),
   },
   {
     contact: "การจัดส่งอาหาร",
@@ -46,7 +46,7 @@ export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps)
       { label: "ขนมแปก", value: "1" },
     ],
     note: "น้องต้องมาร์ท 13 การเล่น",
-    images: ['/assets/pic_icon.png', '/assets/pic_icon.png', '/assets/pic_icon.png', '/assets/pic_icon.png', '/assets/pic_icon.png'].slice(0, 6),
+    images: ['https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg', 'https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg'].slice(0, 6),
   },
   // เพิ่ม order อื่น ๆ ตามต้องการ
 ];
@@ -101,42 +101,42 @@ export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps)
         </Col>
 
         {/* ขวา: รูปภาพสินค้า */}
-<Col xs={24} md={12}>
-  <div className="mb-3">
-    <Text strong>รูปภาพสินค้า</Text>
-  </div>
-  <div
-    className="flex flex-wrap gap-3 justify-start md:justify-start"
-    style={{ minHeight: 130 }}
-  >
-    {sampleImages.map((img, idx) => (
-      <div
-        key={idx}
-        style={{
-          width: 110,
-          height: 110,
-          background: "#f5f5f5",
-          borderRadius: 8,
-          border: "1px solid #e0e0e0",
-          display: "flex",
-          alignItems: "start",
-          justifyContent: "start",
-          overflow: "hidden",
-        }}
-      >
-        <img
-          src={img}
-          alt={`Product ${idx + 1}`}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-      </div>
-    ))}
-  </div>
-</Col>
+      <Col xs={24} md={12}>
+        <div className="mb-3">
+          <Text strong>รูปภาพสินค้า</Text>
+        </div>
+        <div
+          className="flex flex-wrap gap-3 justify-start md:justify-start"
+          style={{ minHeight: 130 }}
+        >
+          {sampleImages.map((img, idx) => (
+            <div
+              key={idx}
+              style={{
+                width: 110,
+                height: 110,
+                background: "#f5f5f5",
+                borderRadius: 8,
+                border: "1px solid #e0e0e0",
+                display: "flex",
+                alignItems: "start",
+                justifyContent: "start",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={img}
+                alt={`Product ${idx + 1}`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </Col>
       </Row>
 
       <Divider className="my-6" />

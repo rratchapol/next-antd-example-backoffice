@@ -1,10 +1,8 @@
 "use client";
 
-import UserForm from "@/components/form/user/Userform";
 import { useRouter } from "next/navigation";
-import { Button, message } from "antd"; 
 import { useEffect, useState } from "react";
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import BrandForm from "@/components/form/brand/Brandform";
 
 export default function LoginPage() {
   const [isClient, setIsClient] = useState(false);
@@ -35,12 +33,12 @@ export default function LoginPage() {
 
 return (
   <>
-  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลร้านค้า</h1>
+  <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">ระบบบันทึกข้อมูลแบรนด์</h1>
   <div className="flex justify-center items-center min-h-screen w-full bg-gray-100 ">
     <div className="w-full p-10 bg-white rounded-xl shadow-xl">
       <div className="text-center mb-6">
       </div>
-      <UserForm onSubmit={handleSubmit} onCancel={handleCancel} />
+      <BrandForm onSubmit={handleSubmit} onCancel={handleCancel} />
     </div>
   </div>
   </>

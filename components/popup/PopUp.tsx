@@ -32,7 +32,7 @@ export default function PopUp({
       okText={okText}
       cancelText={cancelText}
       maskClosable={false}
-      destroyOnClose
+      // destroyOnClose
     >
       {content}
     </Modal>
@@ -54,11 +54,11 @@ export function PopUpLoginFail({
       footer={null}
       closable={false}
       centered
-      bodyStyle={{
+      style={{
         textAlign: "center",
         padding: "32px 24px",
         borderRadius: 16,
-        boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+        // boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>

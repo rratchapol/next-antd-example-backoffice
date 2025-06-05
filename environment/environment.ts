@@ -1,5 +1,5 @@
 const environment = {
-  BaseUrl: "http://20.198.254.208:8080",
+  BaseUrl: "https://dev.api.sos.everloaf.org",
 };
 
 export default environment;

@@ -54,10 +54,10 @@ export default function Dashboard() {
 
 function SummaryCard({ title, value, subtitle, subtitleValue }: any) {
   return (
-    <div className="bg-white rounded-xl p-4">
+    <div className="bg-white rounded-xl p-4 text-center">
       <h3 className="text-sm font-semibold">{title}</h3>
       <p className="text-2xl font-bold text-gray-800">{value.toLocaleString()}</p>
-      <div className="mt-2 text-sm">
+      <div className="mt-2 text-sm border-t pt-2">
         <p className="text-gray-600">{subtitle}</p>
         <p className="text-gray-800">{subtitleValue.toLocaleString()}</p>
       </div>

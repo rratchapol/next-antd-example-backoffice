@@ -42,7 +42,7 @@ export default function OrderCard({ order }: { order: OrderCardProps["order"] })
       <Text className="text-xs text-gray-500 block mb-3">{order.note}</Text>
       <div className="grid grid-cols-4 gap-2">
         {order.images.map((img, idx) => (
-          <div key={idx} className="aspect-square bg-gray-100 rounded overflow-hidden">
+          <div key={idx} className="aspect-square bg-gray-100 rounded overflow-hidden" style={{width: 100, height: 100}}>
             <img src={img} alt={`Order Image ${idx + 1}`} className="w-full h-full object-cover" />
           </div>
         ))}

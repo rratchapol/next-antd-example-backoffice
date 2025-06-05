@@ -46,6 +46,8 @@ const mockUsers: Community[] = [
   {
     id: 4,
     username: "ddd dddddd",
+    population: 1500,
+    network: "Network D",
     district: "A4",
     province: "Phuket",
   },
