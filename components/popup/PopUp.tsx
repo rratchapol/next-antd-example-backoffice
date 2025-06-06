@@ -32,7 +32,6 @@ export default function PopUp({
       okText={okText}
       cancelText={cancelText}
       maskClosable={false}
-      // destroyOnClose
     >
       {content}
     </Modal>
@@ -108,6 +107,30 @@ export  function PopUpTest({
       cancelText={cancelText}
       maskClosable={false}
     >
+      {content}
+    </Modal>
+  );
+}
+
+export  function PopUpUpdate({
+  open,
+  title = "ยืนยันการอัปเดตข้อมูล",
+  content = "คุณต้องการอัปเดตข้อมูลนี้ใช่หรือไม่?",
+  onOk,
+  onCancel,
+  okText = "อัปเดต",
+  cancelText = "ยกเลิก",
+}: PopUpProps) {
+  return (
+    <Modal
+      open={open}
+      title={title}
+      onOk={onOk}
+      onCancel={onCancel}
+      okText={okText} 
+      cancelText={cancelText}
+      maskClosable={false}
+      >
       {content}
     </Modal>
   );

@@ -9,6 +9,7 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import VolunteerForm from "./VolunteerForm";
 import RestaurantForm from "./RestaurantForm";
 import VillageForm from "./VillageForm";
+import PopUpUpdate from "@/components/popup/PopUp";
 
 type UserFormProps = {
   onSubmit: (values: any) => void;
@@ -24,11 +25,22 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues }: 
 
     const [status, setStatus] = useState<string>(initialValues?.role || 'อาสา');
     const [isEditing, setIsEditing] = useState(false);
+    const [statusisactive, setStatusisactive] = useState<string>('active');
+    const [showConfirm, setShowConfirm] = useState(false);
 
+  const handleOk = () => {
+    setShowConfirm(false);
+    onSubmit(form.getFieldsValue());
+  };
+
+  const handleCancel = () => {
+    setShowConfirm(false);
+  };
     
       const handleChange = (value: string) => {
       console.log('เลือกสถานะ:', value);
       setStatus(value);
+      setIsEditing(true); // เปิดโหมดแก้ไขหลังจากเลือกสถานะ
     };
 
   const submit = (values: any) => {
@@ -48,11 +60,8 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues }: 
     }, [initialValues, form]);
 
 
-      // ฟังก์ชันแสดง Modal ยืนยัน
-
-
-
   return (
+    <>
     <Form
       form={form}
       layout="vertical"
@@ -60,10 +69,6 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues }: 
       className="w-full mt-2 bg-white p-4 "
       // disabled={!isEditing}
     >
-       {/* ฟอร์มข้อมูลผู้ใช้ */}
-      {/* <UsersForm /> */}
-
-           {/* หัวข้อ */}
       <Title level={4}>ข้อมูลผู้ใช้งานทั่วไป</Title>
 
       <Row gutter={16}>
@@ -87,7 +92,15 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues }: 
         </Col>
         <Col xs={24} sm={12} md={8} lg={5}>
           <Form.Item label="สถานะ" name="status">
-            <Input disabled={!isEditing} />
+            <Select
+              placeholder="เลือกสถานะ"
+              onChange={handleChange}
+              value={statusisactive}
+              disabled={!isEditing}
+            >
+              <Select.Option value="active">Active</Select.Option>
+              <Select.Option value="inactive">Inactive</Select.Option>
+            </Select>
           </Form.Item>
         </Col>
         <Col xs={24} sm={12} md={8} lg={5}>
@@ -170,15 +183,19 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues }: 
           <Button
             type="primary"
             icon={<PlusOutlined />}
-            // htmlType="submit"
             className="!bg-green-500 !border-none"
-            // onClick={() => submit(form.getFieldsValue())}
-            onClick={() => form.submit()} // ใช้ form.submit() เพื่อส่งข้อมูล
+            onClick={() => setShowConfirm(true)}
           >
             บันทึก
           </Button>
         )}
       </div>
     </Form>
+    <PopUpUpdate
+      open={showConfirm}
+      onOk={handleOk}
+      onCancel={handleCancel}
+    />
+    </>
   );
 }

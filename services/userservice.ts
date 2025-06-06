@@ -1,4 +1,5 @@
 // service/userservice.ts
+import axios from './axiosInstance';
 
 export interface User {
   id: number;
@@ -33,14 +34,14 @@ const mockUsers: User[] = [
     province: "Bangkok",
   },
   {
-    id: 3,
+    id: 17,
     username: "ccc cccccc",
     role: "admin",
     district: "A3",
     province: "Chiang Mai",
   },
   {
-    id: 4,
+    id: 18,
     username: "ddd dddddd",
     role: "user",
     district: "A4",
@@ -57,32 +58,40 @@ export const getUsers = async (): Promise<User[]> => {
   });
 };
 
-// service/userservice.ts
 
-const mockUsersbyId: User[] = [
-  {
-    id: 1,
-    username: "aaa aaaaaa",
-    firstname: "AAA",
-    lastname: "AAAAAA",
-    email: "aaa@gmail.com",
-    phone: "0123456789",
-    role: "อาสา",
-    status: "active",
-    address: "123/45 หมู่ 1 ตำบล A อำเภอ B จังหวัด C",
-    district: "A1",
-    province: "Ayuthaya",
-    location_lat: "14.0000",
-    location_lng: "100.0000",
-  },
+export const createUser = async (user: User): Promise<User> => {
+  try{
+    const res = await axios.post('/users', user);
+    return res.data;
+  }catch(error){
+    throw error;
+  }
+};
 
-];
 
-export const getUsersbyId = async (): Promise<User[]> => {
-  // จำลอง delay เหมือนเรียก API จริง
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockUsersbyId);
-    }, 500);
-  });
+export const getUserss = async (): Promise<User[]> => {
+  try{
+    const res = await axios.get('/users');
+    return res.data;
+  }catch(error){
+    throw error;
+  }
+};
+
+export const getUsersbyId = async (id: string | number): Promise<User> => {
+  try{
+    const res = await axios.get('/users/' + id);
+    return res.data;
+  }catch(error){
+    throw error;
+  }
+};
+
+export const updateUser = async (id: string | number, user: User): Promise<User> => {
+  try{
+    const res = await axios.put('/users/' + id, user);
+    return res.data;
+  }catch(error){
+    throw error;
+  }
 };

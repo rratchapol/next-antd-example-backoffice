@@ -1,17 +1,12 @@
 // UserForm.tsx
 "use client";
 
-import { Form, Input, Button, Row, Col, Divider, Select, DatePicker, Typography } from "antd";
+import { Form, Button, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { EnvironmentOutlined } from "@ant-design/icons";
-import VolunteerForm from "./VolunteerForm";
 import UsersForm from "./๊UserForm";
-import RestaurantForm from "./RestaurantForm";
-import VillageForm from "./VillageForm";
 import PopUp from "../../popup/PopUp";
 import { useState } from "react";
-
-const { Title } = Typography;
+import { useRouter } from "next/navigation";
 
 type UserFormProps = {
   onSubmit: (values: any) => void;
@@ -22,6 +17,7 @@ type UserFormProps = {
 export default function UserForm({ onSubmit }: UserFormProps) {
   const [form] = useForm();
   const [showConfirm, setShowConfirm] = useState(false);
+  const router = useRouter();
 
   const handleOk = () => {
     setShowConfirm(false);
@@ -38,7 +34,7 @@ export default function UserForm({ onSubmit }: UserFormProps) {
   };
 
   const onCancel = () => {
-    console.log("Cancelled");
+    router.push(`/users`);
   };
 
   return (

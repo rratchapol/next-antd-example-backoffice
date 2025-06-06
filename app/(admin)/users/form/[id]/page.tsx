@@ -2,30 +2,45 @@
 "use client";
 import EditUserform from "@/components/form/user/EditUserform";
 import UserForm from "@/components/form/user/Userform";
-import { getUsersbyId, User } from "@/services/userservice";
+import { getUsersbyId, updateUser, User } from "@/services/userservice";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
-export default function UserFormPage({ params }: { params: { id: string } }) {
+export default function UserFormPage({ params }: { params: Promise<{ id: string }> }) {
   const [userData, setUserData] = useState<User | null>(null);
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
+  const { id } = use(params);
 
 
   useEffect(() => {
     async function fetchData() {
-      const users = await getUsersbyId();
-      const foundUser = users.find((u) => u.id === parseInt(params.id));
-      setUserData(foundUser ?? null);
+      const user = await getUsersbyId(id);
+      // const foundUser = users.find((u) => u.id === parseInt(id));
+       setUserData(user || null);
+       console.log("userData:", user);
     }
     fetchData();
-  }, [params.id]);
+  }, [id]);
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: User) => {
     console.log("submit", values);
+    updateUserData(values);
   };
+
+  const updateUserData = async (values: User) => {
+    try {
+      const updatedUser = await updateUser(id, values);
+      console.log("บันทึกข้อมูลผู้ใช้สำเร็จ:", updatedUser);
+      setUserData(updatedUser);
+      setIsEditing(false); 
+      router.push(`/users`);
+    } catch (error) {
+      console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูลผู้ใช้:", error);
+    }
+  }
 
   const onCancel = () => {
     router.push(`/users`);
@@ -47,7 +62,7 @@ export default function UserFormPage({ params }: { params: { id: string } }) {
         <div className="w-full p-10 bg-white rounded-xl shadow-xl">
           {userData && (
             <EditUserform
-              userId={params.id}
+              userId={id}
               onSubmit={handleSubmit}
               initialValues={userData}
               onCancel={onCancel}

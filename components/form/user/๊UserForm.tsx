@@ -59,10 +59,10 @@ export default function UsersForm() {
         <Col xs={24} sm={12} md={8} lg={5}>
           <Form.Item label="บทบาท" name="role">
             <Select placeholder="เลือกบทบาท" onChange={handleChange} value={status} >
-              <Select.Option value="อาสา">อาสา</Select.Option>
-              <Select.Option value="ร้านค้า">ร้านค้า</Select.Option>
-              <Select.Option value="ชุมชน">ชุมชน</Select.Option>
-              <Select.Option value="อาสาและชุมชน">อาสาและชุมชน</Select.Option>
+              <Select.Option value="delivery">อาสา</Select.Option>
+              <Select.Option value="restaurant">ร้านค้า</Select.Option>
+              <Select.Option value="community">ชุมชน</Select.Option>
+              <Select.Option value="delivery-community">อาสาและชุมชน</Select.Option>
             </Select>
           </Form.Item>
         </Col>
@@ -70,12 +70,12 @@ export default function UsersForm() {
 
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={8}>
-          <Form.Item label="ชื่อ" name="firstName">
+          <Form.Item label="ชื่อ" name="firstname">
             <Input />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={12} lg={8}>
-          <Form.Item label="นามสกุล" name="lastName">
+          <Form.Item label="นามสกุล" name="lastname">
             <Input />
           </Form.Item>
         </Col>
@@ -102,10 +102,10 @@ export default function UsersForm() {
       </Row>
 
       {/* แสดงฟอร์มตามบทบาทที่เลือก */}
-      {status === "อาสา" && <VolunteerForm />}
-      {status === "ร้านค้า" && <RestaurantForm />}
-      {status === "ชุมชน" && <VillageForm />}
-      {status === "อาสาและชุมชน" && (
+      {status === "delivery" && <VolunteerForm />}
+      {status === "restaurant" && <RestaurantForm />}
+      {status === "community" && <VillageForm />}
+      {status === "delivery-community" && (
         <>
           <VolunteerForm />
           <VillageForm />
