@@ -4,6 +4,7 @@ import axios from './axiosInstance';
 export interface User {
   id: number;
   username: string;
+  password?: string; 
   firstname?: string;
   lastname?: string;
   email?: string; 
@@ -15,6 +16,15 @@ export interface User {
   province: string;
   location_lat?: string;
   location_lng?: string;
+
+  restaurant_branch_id?: number;  // สำหรับร้านค้า
+  restaurant_name?: string; 
+  job_position?: string;
+
+  vehicle_type?: string;           // สำหรับอาสา
+  vehicle_plate_no?: string;
+  max_capacity_kg?: number;
+  network_id?: number;
 }
 
 // mock data

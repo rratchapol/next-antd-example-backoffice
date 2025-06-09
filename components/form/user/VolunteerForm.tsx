@@ -1,8 +1,6 @@
 // component/Form/VolunteerFormSection.tsx
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { Row, Col, Form, Select, Input, Typography, Divider, Button, message } from "antd";
-import { useForm } from "antd/es/form/Form";
-import { useState } from "react";
 
 const { Title } = Typography;
 
@@ -17,8 +15,8 @@ export default function VolunteerForm() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         form.setFieldsValue({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          location_lat: position.coords.latitude,
+          location_long: position.coords.longitude,
         });
       },
       () => {
@@ -34,17 +32,17 @@ export default function VolunteerForm() {
       <Form form={form} layout="vertical">
         <Row gutter={16}>
           <Col xs={24} sm={24} md={24} lg={7}>
-            <Form.Item label="ประเภทรถยนต์" name="cowType">
+            <Form.Item label="ประเภทรถยนต์" name="vehicle_type">
               <Select placeholder="เลือกประเภทรถยนต์" />
             </Form.Item>
           </Col>
           <Col xs={24} sm={24} md={24} lg={7}>
-            <Form.Item label="ทะเบียนรถยนต์" name="vehicleNo">
+            <Form.Item label="ทะเบียนรถยนต์" name="vehicle_plate_no">
               <Input />
             </Form.Item>
           </Col>
           <Col xs={24} sm={24} md={24} lg={7}>
-            <Form.Item label="น้ำหนักรวมสูงสุด (kg)" name="weight">
+            <Form.Item label="น้ำหนักรวมสูงสุด (kg)" name="max_capacity_kg">
               <Input />
             </Form.Item>
           </Col>
@@ -52,17 +50,17 @@ export default function VolunteerForm() {
 
         <Row gutter={16}>
           <Col xs={24} sm={24} md={24} lg={6}>
-            <Form.Item label="เครือข่าย" name="equipment">
+            <Form.Item label="เครือข่าย" name="network_id">
               <Select placeholder="เลือกเครือข่าย" />
             </Form.Item>
           </Col>
           <Col xs={24} sm={24} md={24} lg={6}>
-            <Form.Item label="ละติจูด" name="latitude">
+            <Form.Item label="ละติจูด" name="location_lat">
               <Input />
             </Form.Item>
           </Col>
           <Col xs={24} sm={24} md={24} lg={6}>
-            <Form.Item label="ลองจิจูด" name="longitude">
+            <Form.Item label="ลองจิจูด" name="location_long">
               <Input />
             </Form.Item>
           </Col>
