@@ -10,19 +10,19 @@ import { use, useEffect, useState } from "react";
 export default function OrderFormPage({ params }: { params: { id: string } }) {
   const [data, setData] = useState<User[]>([]);
   useEffect(() => {
-    useId();
+    // useId();
     
   }, []);
 
-  const useId  = () => {
-        async function fetchData() {
-          const users = await getUsersbyId();
-            console.log("users", users);
-          setData(users);
-        }
-        fetchData();
+  // const useId  = () => {
+  //       async function fetchData() {
+  //         const users = await getUsersbyId();
+  //           console.log("users", users);
+  //         setData(users);
+  //       }
+  //       fetchData();
       
-  }
+  // }
   const router = useRouter();
   const handleSubmit = (values: any) => {
     console.log("submit", values);
@@ -51,6 +51,7 @@ export default function OrderFormPage({ params }: { params: { id: string } }) {
         แก้ไข
         </Button>
     </div> */}
+    
     </>
 );
 }

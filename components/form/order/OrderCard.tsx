@@ -17,12 +17,12 @@ type OrderCardProps = {
 
  const statusorder = "ยังไม่สำเร็จ";
 
-export default function OrderCard({ order }: { order: OrderCardProps["order"] }) {
+export default function OrderCard({ order, onViewDetails }: { order: OrderCardProps["order"], onViewDetails: () => void }) {
   return (
-    <Card className="bg-gray-50">
+    <Card className="bg-gray-50 border border-gray-200 shadow-sm rounded-lg p-4">
       <div className="flex justify-between items-center mb-4">
         <Title level={5} type="secondary" >{order.contact}</Title>
-        <Button type="link" danger size="small" onClick={order.handleUpload}>
+        <Button type="link" danger size="small" onClick={order.handleUpload} className="!border !border-red-500 !bg-red-100 hover:bg-red-50">
           {statusorder}
         </Button>
       </div>
@@ -40,15 +40,23 @@ export default function OrderCard({ order }: { order: OrderCardProps["order"] })
         ))}
       </div>
       <Text className="text-xs text-gray-500 block mb-3">{order.note}</Text>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2">
         {order.images.map((img, idx) => (
-          <div key={idx} className="aspect-square bg-gray-100 rounded overflow-hidden" style={{width: 100, height: 100}}>
-            <img src={img} alt={`Order Image ${idx + 1}`} className="w-full h-full object-cover" />
+          <div
+            key={idx}
+            className="aspect-square bg-gray-100 rounded overflow-hidden w-full"
+            style={{ minWidth: 0 }}
+          >
+            <img
+              src={img}
+              alt={`Order Image ${idx + 1}`}
+              className="w-full h-full object-cover"
+            />
           </div>
         ))}
       </div>
       <Divider className="bg-gray-200"/>
-        <Button className="w-full justify-center text-color-primary" type="link"   onClick={order.handleUpload}>
+        <Button className="w-full justify-center text-color-primary" type="link"   onClick={onViewDetails}>
           ดูข้อมูลเพิ่มเติม
         </Button>
     </Card>
