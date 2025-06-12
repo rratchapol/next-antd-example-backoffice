@@ -1,6 +1,7 @@
 import { Modal, Timeline, Button } from "antd";
 import { useState } from "react";
 import type { FC } from "react";
+import OrderStatus from "./OrderStatus";
 
 type Props = {
   open: boolean;
@@ -10,10 +11,18 @@ type Props = {
 
 const OrderDetailModal: FC<Props> = ({ open, onClose, order }) => {
   const [activeTab, setActiveTab] = useState('delivery');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+  const handleViewDetails = (order: any) => {
+    setSelectedOrder(order);
+    setIsModalVisible(true);
+  };
   
   if (!order) return null;
 
   return (
+    <>
     <Modal
       open={open}
       onCancel={onClose}
@@ -57,13 +66,14 @@ const OrderDetailModal: FC<Props> = ({ open, onClose, order }) => {
         <div className="flex gap-2 mb-5">
           <Button 
             type="primary" 
-            className="bg-green-500 border-green-500 hover:bg-green-600 hover:border-green-600"
+            onClick={handleViewDetails}
+            className="!bg-green-500 !border-green-500 !hover:bg-green-600 !hover:border-green-600"
           >
             แก้ไขสถานะ
           </Button>
-          <Button className="text-green-500 border-green-500 hover:text-green-600 hover:border-green-600">
+          {/* <Button className="text-green-500 border-green-500 hover:text-green-600 hover:border-green-600">
             ยกเลิกออเดอร์
-          </Button>
+          </Button> */}
         </div>
       </div>
 
@@ -165,7 +175,7 @@ const OrderDetailModal: FC<Props> = ({ open, onClose, order }) => {
               <div className="flex-1">
                 <div className="font-bold mb-1">ส้มตำไทย</div>
                 <div className="text-xs text-gray-600">จำนวน: 2 ตะกร้า</div>
-                <div className="text-xs text-gray-600">น้ำหนัก: 1.8 กก.</div>
+                <div className="text-xs text-gray-600">น้ำหนัก: 1.8 กก. </div>
               </div>
             </div>
             
@@ -181,12 +191,18 @@ const OrderDetailModal: FC<Props> = ({ open, onClose, order }) => {
         <Button 
           type="primary" 
           onClick={onClose}
-          className="!bg-green-500 !border-green-500 !hover:bg-green-600 !hover:border-green-600"
+          className="!bg-green-500 !border-green-500 !hover:bg-green-600 !hover:border-green-600" 
         >
           ปิด
         </Button>
       </div>
-    </Modal>
+    </Modal> 
+    <OrderStatus
+      open={isModalVisible}
+      onClose={() => setIsModalVisible(false)}
+      order={selectedOrder}
+    />
+    </>
   );
 };
 
