@@ -1,4 +1,5 @@
-import { Card, Button, Typography, Divider } from "antd";
+import { Card, Button, Typography, Divider, Modal } from "antd";
+import { useState } from "react";
 const { Title, Text } = Typography;
 
 type OrderCardProps = {
@@ -18,7 +19,17 @@ type OrderCardProps = {
  const statusorder = "ยังไม่สำเร็จ";
 
 export default function OrderCard({ order, onViewDetails }: { order: OrderCardProps["order"], onViewDetails: () => void }) {
+
+    const [previewVisible, setPreviewVisible] = useState(false);
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
+  
+    const handleImageClick = (img: string) => {
+      setPreviewImage(img);
+      setPreviewVisible(true);
+    };
+    
   return (
+    <>
     <Card className="bg-gray-50 border border-gray-200 shadow-sm rounded-lg p-4">
       <div className="flex justify-between items-center mb-4">
         <Title level={5} type="secondary" >{order.contact}</Title>
@@ -51,6 +62,7 @@ export default function OrderCard({ order, onViewDetails }: { order: OrderCardPr
               src={img}
               alt={`Order Image ${idx + 1}`}
               className="w-full h-full object-cover"
+              onClick={() => handleImageClick(img)}
             />
           </div>
         ))}
@@ -60,5 +72,14 @@ export default function OrderCard({ order, onViewDetails }: { order: OrderCardPr
           ดูข้อมูลเพิ่มเติม
         </Button>
     </Card>
+        {/* Modal สำหรับแสดงรูปขนาดใหญ่ */}
+    <Modal
+        open={previewVisible}
+        footer={null}
+        onCancel={() => setPreviewVisible(false)}
+        centered >
+        <img alt="Preview" src={previewImage ?? ''} className="w-full h-auto rounded" />
+    </Modal>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 // UserForm.tsx
 "use client";
 
-import { Form, Input, Button, Row, Col, Divider, Select, DatePicker, Typography } from "antd";
+import { Form, Input, Button, Row, Col, Divider, Select, DatePicker, Typography, Modal } from "antd";
 import { useForm } from "antd/es/form/Form";
 import OrderCard from "./OrderCard";
 import { useState } from "react";
@@ -18,6 +18,14 @@ type UserFormProps = {
 export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps) {
   const [form] = useForm();
   const sampleImages = Array(5).fill('https://f.ptcdn.info/999/032/000/1435824084-1088721670-o.jpg');
+
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  const handleImageClick = (img: string) => {
+    setPreviewImage(img);
+    setPreviewVisible(true);
+  };
 
   const orderList = [
   {
@@ -142,6 +150,7 @@ export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps)
                 src={img}
                 alt={`Product ${idx + 1}`}
                 className="w-full h-full object-cover"
+                onClick={() => handleImageClick(img)}
               />
             </div>
           ))}
@@ -163,6 +172,14 @@ export default function OrderForm({ onSubmit, onCancel, userId }: UserFormProps)
       onClose={() => setIsModalVisible(false)}
       order={selectedOrder}
     />
+    {/* Modal สำหรับแสดงรูปขนาดใหญ่ */}
+    <Modal
+        open={previewVisible}
+        footer={null}
+        onCancel={() => setPreviewVisible(false)}
+        centered >
+        <img alt="Preview" src={previewImage ?? ''} className="w-full h-auto rounded" />
+    </Modal>
     </>
   );
 }
