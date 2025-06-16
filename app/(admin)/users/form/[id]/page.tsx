@@ -2,6 +2,7 @@
 "use client";
 import EditUserform from "@/components/form/user/EditUserform";
 import UserForm from "@/components/form/user/Userform";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { getUsersbyId, updateUser, User } from "@/services/userservice";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -10,6 +11,7 @@ import { use, useEffect, useState } from "react";
 
 export default function UserFormPage({ params }: { params: Promise<{ id: string }> }) {
   const [userData, setUserData] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const { id } = use(params);
@@ -17,13 +19,18 @@ export default function UserFormPage({ params }: { params: Promise<{ id: string 
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       const user = await getUsersbyId(id);
-      // const foundUser = users.find((u) => u.id === parseInt(id));
        setUserData(user || null);
+       setLoading(false);
        console.log("userData:", user);
     }
     fetchData();
   }, [id]);
+
+  if (loading) {
+  return <LoadingSpinner />;
+}
 
   const handleSubmit = (values: User) => {
     console.log("submit", values);

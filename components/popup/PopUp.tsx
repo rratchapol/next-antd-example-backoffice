@@ -1,6 +1,6 @@
 //components/popup/PopUp.tsx
 
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 
@@ -9,7 +9,7 @@ type PopUpProps = {
   title?: string;
   content?: string;
   onOk: () => void;
-  onCancel: () => void;
+  onCancel?: () => void;
   okText?: string;
   cancelText?: string;
 };
@@ -132,6 +132,34 @@ export  function PopUpUpdate({
       maskClosable={false}
       >
       {content}
+    </Modal>
+  );
+}
+
+
+export function PopUpFail({
+  open,
+  title = "ข้อมูลไม่ถูกต้อง",
+  content = "กรุณาตรวจสอบข้อมูลที่กรอกอีกครั้ง",
+  onOk,
+  okText = "ตกลง",
+}: PopUpProps) {
+  return (
+    <Modal
+      open={open}
+      title={title}
+      footer={null}
+      closable={false}
+      maskClosable={false}
+    >
+      <div >
+        {content}
+        <div style={{ marginTop: 24, textAlign: "end" }}>
+          <Button type="primary" onClick={onOk}>
+            {okText}
+          </Button>
+        </div>
+      </div>
     </Modal>
   );
 }
