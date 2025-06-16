@@ -1,11 +1,11 @@
 // services/axiosInstance.ts
 import axios from 'axios';
-// import environment from "@/environment/environment";
+import environment from "@/environment/environment";
 
 
 const axiosInstance = axios.create({
-  // baseURL: environment.BaseUrl,
-  baseURL : process.env.NEXT_PUBLIC_URL,
+  baseURL: environment.BaseUrl,
+  // baseURL : process.env.NEXT_PUBLIC_URL,
   // withCredentials: true,
     headers: {
     'Content-Type': 'application/json', 
