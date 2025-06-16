@@ -7,7 +7,14 @@ import { Button } from "antd";
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
-export default function OrderFormPage({ params }: { params: { id: string } }) {
+type PageProps = {
+  params: {
+    id: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default function OrderFormPage({ params }: PageProps) {
   const [data, setData] = useState<User[]>([]);
   useEffect(() => {
     // useId();
