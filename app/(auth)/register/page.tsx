@@ -17,16 +17,16 @@ export default function LoginPage() {
   }, []);
 
   const handleLogin = async (values: { username: string; password: string }) => {
-    const res = await loginservice(values);
+    // const res = await loginservice(values);
 
-    if (res.success && res.token) {
-      localStorage.setItem("token", res.token); // เก็บ JWT ไว้
-      message.success("เข้าสู่ระบบสำเร็จ");
-      router.push("/users");
-    } else {
-      message.error(res.message || "เข้าสู่ระบบล้มเหลว");
-      console.error("Login error:", res.message);
-    }
+    // if (res.success && res.token) {
+    //   localStorage.setItem("token", res.token); // เก็บ JWT ไว้
+    //   message.success("เข้าสู่ระบบสำเร็จ");
+    //   router.push("/users");
+    // } else {
+    //   message.error(res.message || "เข้าสู่ระบบล้มเหลว");
+    //   console.error("Login error:", res.message);
+    // }
   };
 
   if (!isClient) {

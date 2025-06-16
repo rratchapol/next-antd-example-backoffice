@@ -154,12 +154,12 @@ export default function UserForm({ onSubmit, onCancel, userId, initialValues }: 
       </Row>
 
       {/* แสดงฟอร์มตามบทบาทที่เลือก */}
-      {status === "อาสา" && <VolunteerForm />}
+      {status === "อาสา" && <VolunteerForm form={form} />}
       {status === "ร้านค้า" && <RestaurantForm />}
       {status === "ชุมชน" && <VillageForm />}
       {status === "อาสาและชุมชน" && (
         <>
-          <VolunteerForm />
+          <VolunteerForm form={form} />
           <VillageForm />
         </>
       )}

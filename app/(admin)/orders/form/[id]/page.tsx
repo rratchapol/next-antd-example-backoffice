@@ -8,37 +8,34 @@ import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export default function OrderFormPage({ params }: PageProps) {
   const [data, setData] = useState<User[]>([]);
-  useEffect(() => {
-    // useId();
-    
-  }, []);
+  const [id, setId] = useState<string>("");
 
-  // const useId  = () => {
-  //       async function fetchData() {
-  //         const users = await getUsersbyId();
-  //           console.log("users", users);
-  //         setData(users);
-  //       }
-  //       fetchData();
-      
-  // }
+  useEffect(() => {
+    const fetchParams = async () => {
+      const resolvedParams = await params;
+      setId(resolvedParams.id);
+    };
+    fetchParams();
+  }, [params]);
+
   const router = useRouter();
   const handleSubmit = (values: any) => {
     console.log("submit", values);
   };
 
-    const onCancel = () => {
-        router.push(`/users`)
-        console.log("cancel");
-    };
+  const onCancel = () => {
+    router.push(`/users`)
+    console.log("cancel");
+  };
+
   return (
     <>
     <h1 className="px-3 py-6 text-3xl font-extrabold text-gray-800">รายละเอียดออเดอร์</h1>
@@ -46,9 +43,8 @@ export default function OrderFormPage({ params }: PageProps) {
       <div className="w-full p-10 bg-white rounded-xl shadow-xl">
         <div className="text-center mb-6">
         </div>
-        <OrderForm userId={params.id} onSubmit={handleSubmit}></OrderForm>
+        <OrderForm userId={id} onSubmit={handleSubmit}></OrderForm>
       </div>
-
     </div>
     {/* <div className="flex justify-end mt-10">
         <Button onClick={onCancel} className="mr-2">
@@ -58,7 +54,6 @@ export default function OrderFormPage({ params }: PageProps) {
         แก้ไข
         </Button>
     </div> */}
-    
     </>
-);
+  );
 }
