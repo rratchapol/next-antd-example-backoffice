@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 });
 
 export const axiosInstances = axios.create({
-  baseURL: "https://test.com",
+  baseURL: "http://locallhost:3000",
     headers: {
     'Content-Type': 'application/json', 
   },
