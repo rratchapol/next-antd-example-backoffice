@@ -28,11 +28,11 @@ export default function Dashboard() {
       {/* Summary Section */}
       {/* Summary Cards */}
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <SummaryCard title="Monthly Donation Weight (kg)" value={summary.donationWeight} subtitle="YTD Donation Weight (kg)" subtitleValue={summary.ytdDonationWeight} />
-        <SummaryCard title="Monthly Meal Served Eq. (meals)" value={summary.mealServed} subtitle="YTD Meal Served Eq. (meals)" subtitleValue={summary.ytdMealServed} />
-        <SummaryCard title="Monthly CO2e (kg)" value={summary.co2e} subtitle="YTD CO2e (kg)" subtitleValue={summary.ytdCO2e} />
+        <SummaryCard title="Weight (kg)" value={summary.donationWeight} subtitle="YTD Weight (kg)" subtitleValue={summary.ytdDonationWeight} />
+        <SummaryCard title=" Meal (meals)" value={summary.mealServed} subtitle="YTD Meal (meals)" subtitleValue={summary.ytdMealServed} />
+        <SummaryCard title="CO2e (kg)" value={summary.co2e} subtitle="YTD CO2e (kg)" subtitleValue={summary.ytdCO2e} />
         <div className="bg-white rounded-xl p-4">
-          <h3 className="text-sm font-semibold mb-2">Beneficiary Distribution</h3>
+          <h3 className="text-sm font-semibold mb-2">Distribution</h3>
           <Pie data={pieData} />
         </div>
       </div>
@@ -41,10 +41,10 @@ export default function Dashboard() {
 
       {/* Charts */}
       <div className="grid grid-cols-2 gap-4">
-        <ChartCard title="Daily Donation Weight">
+        <ChartCard title="Weight">
           <Bar data={barData} />
         </ChartCard>
-        <ChartCard title="Monthly Donation/Average Daily Weight">
+        <ChartCard title="Monthly Weight">
           <Bar data={barData} />
         </ChartCard>
       </div>

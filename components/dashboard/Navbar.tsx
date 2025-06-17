@@ -81,9 +81,9 @@ const selectedKey = pathToKey[pathname] || '1';
       <Menu.Item key="2" icon={<UserOutlined />} onClick={() => setNavkey('2')}>
         <Link href="/users">ผู้ใช้งาน</Link>
       </Menu.Item>
-      <Menu.Item key="3" icon={<UsergroupDeleteOutlined />} onClick={() => setNavkey('3')}>
+      {/* <Menu.Item key="3" icon={<UsergroupDeleteOutlined />} onClick={() => setNavkey('3')}>
         <Link href="/community">ชุมชน</Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <SubMenu key="sub1" icon={<ShopOutlined />} title="ร้านค้า">
         <Menu.Item key="4" icon={<ShopOutlined />} onClick={() => setNavkey('4')}>
           <Link href="/restaurant">ร้านค้า</Link>
@@ -92,9 +92,9 @@ const selectedKey = pathToKey[pathname] || '1';
           <Link href="/brands">เเบรนด์</Link>
         </Menu.Item>
       </SubMenu>
-      <Menu.Item key="6" icon={<ApartmentOutlined />} onClick={() => setNavkey('6')}>
+      {/* <Menu.Item key="6" icon={<ApartmentOutlined />} onClick={() => setNavkey('6')}>
         <Link href="/networks">เครือข่าย</Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item key="7" icon={<HistoryOutlined />} onClick={() => setNavkey('7')}>
         <Link href="/orders">รายการคำสั่ง</Link>
       </Menu.Item>

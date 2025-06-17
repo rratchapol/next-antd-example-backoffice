@@ -18,11 +18,11 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="flex min-h-screen">
-      {/* Left Side */}
-      <div className="w-3/5 bg-gradient-to-b from-blue-700 to-green-300 flex items-center justify-center">
+    <div className="flex min-h-screen flex-col lg:flex-row">
+      {/* Left Side - Hidden on mobile, visible on large screens */}
+      <div className="hidden lg:flex lg:w-3/5 bg-gradient-to-b from-blue-700 to-green-300 items-center justify-center">
         <Image
-          src="/assets/login_image.png" // path ไปยังไฟล์ของคุณใน public folder
+          src="/assets/bat.png" // path ไปยังไฟล์ของคุณใน public folder
           alt="Login Illustration"
           width={600}
           height={600}
@@ -30,20 +30,20 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
         />
       </div>
 
-      {/* Right Side */}
-      <div className="w-2/5 flex flex-col items-center justify-center px-12 bg-white">
-        <Image
+      {/* Right Side - Full width on mobile, 2/5 on large screens */}
+      <div className="w-full lg:w-2/5 flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 bg-white py-8 lg:py-0">
+        {/* <Image
           src="/assets/sos_logo.png" // โลโก้ขององค์กรคุณ
           alt="SOS Logo"
           width={400}
           height={200}
           className="mb-4"
-        />
+        /> */}
 
-        <h1 className="text-2xl font-bold mb-2">Welcome back !</h1>
-        <p className="text-gray-500 text-center mb-8">
+        <h1 className="text-xl sm:text-2xl font-bold mb-6 lg:mb-8 text-center">เข้าสู่ระบบ</h1>
+        {/* <p className="text-gray-500 text-center mb-8">
           Lorem ipsum dolor sit amet, vince adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        </p>
+        </p> */}
 
         <Form
           form={form}
@@ -61,6 +61,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               prefix={<UserOutlined />}
               placeholder="ชื่อผู้ใช้"
               size="large"
+              className="text-sm sm:text-base"
             />
           </Form.Item>
 
@@ -72,6 +73,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               prefix={<LockOutlined />}
               placeholder="รหัสผ่าน"
               size="large"
+              className="text-sm sm:text-base"
             />
           </Form.Item>
 
@@ -90,13 +92,13 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               type="primary"
               htmlType="submit"
               size="large"
-              className="w-full !bg-green-500 hover:!bg-green-600 !border-none"
+              className="w-full !bg-green-500 hover:!bg-green-600 !border-none text-sm sm:text-base"
             >
               เข้าสู่ระบบ
             </Button>
           </Form.Item>
 
-          <p className="text-center">
+          <p className="text-center text-sm sm:text-base">
             ยังไม่มีบัญชี?{" "}
             <a href="/register" className="!text-green-500">
               สมัครสมาชิก

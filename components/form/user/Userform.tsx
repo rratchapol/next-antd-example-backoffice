@@ -113,7 +113,7 @@ export default function UserForm({ onSubmit }: UserFormProps) {
               </Form.Item>
             </Col>
           </Row>
-          <Row gutter={16}>
+          {/* <Row gutter={16}>
             <Col xs={24} sm={24} md={24} lg={8}>
               <Form.Item label="จังหวัด" name="province">
                 <Select placeholder="เลือกจังหวัด" />
@@ -124,7 +124,7 @@ export default function UserForm({ onSubmit }: UserFormProps) {
                 <Select placeholder="เลือกเขต/อำเภอ" />
               </Form.Item>
             </Col>
-          </Row>
+          </Row> */}
           {/* แสดงฟอร์มตามบทบาทที่เลือก */}
           {status === "delivery" && <VolunteerForm form={form} />}
           {status === "restaurant" && <RestaurantForm />}

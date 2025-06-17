@@ -12,6 +12,13 @@ const axiosInstance = axios.create({
   },
 });
 
+export const axiosInstances = axios.create({
+  baseURL: "https://test.com",
+    headers: {
+    'Content-Type': 'application/json', 
+  },
+});
+
 // Request Interceptor
 axiosInstance.interceptors.request.use(
   (config) => {

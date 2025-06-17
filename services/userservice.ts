@@ -1,5 +1,6 @@
 // service/userservice.ts
-import axios from './axiosInstance';
+import { axiosInstances } from './axiosInstance';
+
 
 export interface User {
   id: number;
@@ -71,7 +72,7 @@ export const getUsers = async (): Promise<User[]> => {
 
 export const createUser = async (user: User): Promise<User> => {
   try{
-    const res = await axios.post('/users', user);
+    const res = await axiosInstances.post('/user', user);
     return res.data;
   }catch(error){
     throw error;
@@ -81,7 +82,7 @@ export const createUser = async (user: User): Promise<User> => {
 
 export const getUserss = async (): Promise<User[]> => {
   try{
-    const res = await axios.get('/users');
+    const res = await axiosInstances.get('/users');
     return res.data;
   }catch(error){
     throw error;
@@ -90,7 +91,7 @@ export const getUserss = async (): Promise<User[]> => {
 
 export const getUsersbyId = async (id: string | number): Promise<User> => {
   try{
-    const res = await axios.get('/users/' + id);
+    const res = await axiosInstances.get('/users/' + id);
     return res.data;
   }catch(error){
     throw error;
@@ -99,7 +100,7 @@ export const getUsersbyId = async (id: string | number): Promise<User> => {
 
 export const updateUser = async (id: string | number, user: User): Promise<User> => {
   try{
-    const res = await axios.put('/users/' + id, user);
+    const res = await axiosInstances.put('/users/' + id, user);
     return res.data;
   }catch(error){
     throw error;
